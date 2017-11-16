@@ -1,0 +1,15 @@
+<!-- <p>There are {{getLists().length}} lists</p> -->
+<!--
+<p>getItemsUI: {{getItemsUI() | json}}</p>
+<p>getLists: {{getLists() | json}}</p>
+-->
+
+<section class="container lists">
+  <app-todo-list *ngFor="let list of getLists()" [list]="list" [clock]="list.clock" [lists]="getLists()"></app-todo-list>
+  <section class="new_state">
+    <form (ngSubmit)="createList(newListName.value); newListName.value=''">
+      <i class="fa fa-plus-square-o fa-1x" aria-hidden="true"></i>
+      <input type="text" placeholder=" Nouvel état" #newListName/>
+    </form>
+  </section>
+</section>
