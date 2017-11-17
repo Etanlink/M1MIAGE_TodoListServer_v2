@@ -1,3 +1,5 @@
 /node_modules
 /.idea
 /appJS
+yarn.lock
+package-lock
