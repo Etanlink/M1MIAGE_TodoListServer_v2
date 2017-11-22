@@ -1,52 +1,28 @@
-<section draggable [dragData]="getDragItem()">
-  <table class="item card" width="100%" [style.backgroundColor]="bgColor">
-    <tr>
-      <td>
-        <input #isChecked type="checkbox" [ngModel]="item.checked" (ngModelChange)="check(isChecked.checked)" />
+<section draggable [dragData]="getDragItem()" [style.backgroundColor]="bgColor">
+  <input #isChecked type="checkbox" [ngModel]="item.checked" (ngModelChange)="check(isChecked.checked)" />
 
-        <label class="subtitle is-5" *ngIf="!isEditingLabel()" (dblclick)="editLabel(true)">
-          {{item.label}}&nbsp;&nbsp;
-        </label>
-        <form *ngIf="isEditingLabel()" (submit)="setLabel(newLabel.value)">
-          <input #newLabel type="text" [value]="item.label"/>
-        </form>
-      </td>
-      <td>
-        <!-- icone pour afficher les détails dans un item -->
-        <i (click)="showDetails()" class="fa fa-caret-square-o-down fa-1x" aria-hidden="true"></i>
-        <!-- icone pour supprimer un item -->
-        <i (click)="delete()" class="fa fa-window-close fa-1x" aria-hidden="true"></i>
-      </td>
-    </tr>
-    <tr><td class="tdHidden" colspan="2">
-      <div *ngIf="isShowingDetails()">
-        <div *ngIf="!isEditingDate()" (dblclick)="editDate(true)" class="is-small">Début : {{getTheDateD()}}</div>
-        <div *ngIf="!isEditingDate()" (dblclick)="editDate(true)" class="is-small">Fin : {{getTheDateF()}}</div>
-        <form *ngIf="isEditingDate()" (submit)="setDate(newDateD.value,newDateF.value)">
-          <label>Date de début</label>
-          <input #newDateD type="datetime-local" value={{getTheDateDString()}}/>
-          <br/>
-          <label>Date de fin</label>
-          <input #newDateF type="datetime-local" value={{getTheDateFString()}}/>
-          <button type="submit"><i class="fa fa-check-circle-o" aria-hidden="true"></i></button>
-        </form>
-      </div>
-    </td></tr>
+  <label class="subtitle is-5" *ngIf="!isEditingLabel()" (dblclick)="editLabel(true)">
+    {{item.label}}&nbsp;&nbsp;
+  </label>
+  <form *ngIf="isEditingLabel()" (submit)="setLabel(newLabel.value)">
+    <input #newLabel type="text" [value]="item.label"/>
+  </form>
+  <!-- icone pour afficher les détails dans un item -->
+  <i (click)="showDetails()" class="fa fa-caret-square-o-down fa-1x" aria-hidden="true"></i>
+  <!-- icone pour supprimer un item -->
+  <i (click)="delete()" class="fa fa-window-close fa-1x" aria-hidden="true"></i>
+  <div *ngIf="isShowingDetails()">
+    <div *ngIf="!isEditingDate()" (dblclick)="editDate(true)" class="is-small">Début : {{getTheDateD()}}</div>
+    <div *ngIf="!isEditingDate()" (dblclick)="editDate(true)" class="is-small">Fin : {{getTheDateF()}}</div>
+    <form *ngIf="isEditingDate()" (submit)="setDate(newDateD.value,newDateF.value)">
+      <label>Date de début</label>
+      <input #newDateD type="datetime-local" value={{getTheDateDString()}}/>
+      <br/>
+      <label>Date de fin</label>
+      <input #newDateF type="datetime-local" value={{getTheDateFString()}}/>
+      <button type="submit"><i class="fa fa-check-circle-o" aria-hidden="true"></i></button>
+    </form>
+  </div>
 
-    <!-------------------------------------------------------------------------
-    Première implémentation du changement d'état pour les items (fait avant le drag&drop)
-    Permet de sélectionner l'état dans une liste et valider le changement par un bouton.
-
-    <tr><td align="center">
-      <form (submit)="changeList(malist.value)">
-        <select #malist>
-          <option *ngFor="let c of lists" value={{c.id}}>{{c.name}}</option>
-        </select>
-        <button type="submit"><i class="fa fa-exchange" aria-hidden="true"></i></button>
-      </form>
-    </td></tr>
-    ------------------------------------------------------------------------->
-
-  </table>
 </section>
 
