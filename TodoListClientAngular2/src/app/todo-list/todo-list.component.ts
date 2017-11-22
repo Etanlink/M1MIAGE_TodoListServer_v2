@@ -13,10 +13,30 @@ export class TodoListComponent implements OnInit {
   @Input() clock: number;
   @Input() lists: TodoListWithItems[];
 
+  private editingLabel = false;
+
   constructor(private todoListService: TodoListService) { }
 
   ngOnInit() {
   }
+
+  setLabel(label: string) {
+    if (label === "") {
+      this.delete();
+    } else {
+      this.todoListService.SERVER_UPDATE_LIST_NAME(this.list.id, label);
+    }
+    this.editLabel(false);
+  }
+
+  isEditingLabel(): boolean {
+    return this.editingLabel;
+  }
+
+  editLabel(edit: boolean) {
+    this.editingLabel = edit;
+  }
+
 
   createItem(label: string) {
     const id = this.todoListService.SERVER_CREATE_ITEM(
