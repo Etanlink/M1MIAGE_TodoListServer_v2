@@ -1,6 +1,12 @@
 <section class="root" [style.backgroundColor]="getColor()">
-  <h3><b>{{list.name}}</b></h3>
+  <h3 *ngIf="!isEditingLabel()" (dblclick)="editLabel(true)">
+    {{list.name}}&nbsp;&nbsp;
+  </h3>
+  <form *ngIf="isEditingLabel()" (submit)="setLabel(newLabel.value)">
+    <input #newLabel type="text" [value]="list.name"/>
+  </form>
   <section droppable (onDrop)="changeList($event)" class="items">
+
     <app-todo-item id="item"
                    *ngFor="let item of list.items"
                    [clock]="item.clock"
