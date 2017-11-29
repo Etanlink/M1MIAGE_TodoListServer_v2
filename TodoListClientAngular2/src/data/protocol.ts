@@ -38,9 +38,7 @@ export type PassportUser = {
 };
 
 export type DataForItem = {
-  categories: string[],
-  dateD: number,
-  dateF: number;
+  description: string;
 };
 
 
