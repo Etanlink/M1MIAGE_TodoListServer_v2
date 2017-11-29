@@ -156,4 +156,13 @@ export class TodoItemComponent implements OnInit, OnChanges {
     };
   }
 
+  colorIfChecked(): string {
+    if(this.item.checked) {
+      return "#bdbdbd";
+    }
+    else {
+      return "#FFF";
+    }
+  }
+
 }
