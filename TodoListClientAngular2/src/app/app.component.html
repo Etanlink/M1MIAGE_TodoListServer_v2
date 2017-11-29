@@ -1,9 +1,4 @@
 <nav *ngIf="getUser()" class="navbar is-dark">
-  <div class="navbar-brand">
-    <a class="navbar-item">
-      <i class="fa fa-list fa-3x" aria-hidden="true"></i>
-    </a>
-  </div>
 
   <div class="navbar-menu">
     <div class="navbar-start">
@@ -13,20 +8,23 @@
     <div class="navbar-end">
       <div class="navbar-item">
         <section class="user">
-          <label>Identifié via {{getUserProvider()}}</label>
-          <section class="connection">
-            <label *ngIf="getConnected() | async">
-              <span class="has-text-success"><i class="fa fa-check-square"></i>
-              </span> connecté</label>
-            <label *ngIf="!(getConnected() | async)" (click)="tryReconnectSocket()">
-              <span class="has-text-danger"><i class="fa fa-ban"></i>
-              </span> déconnecté</label>
-          </section>
+          <!--<label>Identifié via {{getUserProvider()}}</label>-->
+
           <section>
             <label><i class="fa fa-user-circle" aria-hidden="true"><br></i> {{getUserName()}}</label>
           </section>
           <section>
-            <label><i class="fa fa-envelope" aria-hidden="true"><br></i> {{getUserMail()}}</label>
+            <section class="connection">
+              <label *ngIf="getConnected() | async">
+              <span class="has-text-success"><i class="fa fa-check-square"></i>
+              </span>
+                <label>{{getUserMail()}}</label>
+              </label>
+              <label *ngIf="!(getConnected() | async)" (click)="tryReconnectSocket()">
+              <span class="has-text-danger"><i class="fa fa-ban"></i>
+              </span>
+                <label>{{getUserMail()}}</label></label>
+            </section>
           </section>
         </section>
       </div>

@@ -1,3 +1,10 @@
+.container {
+  font-family: Roboto;
+}
 .navbar {
-  border: solid thin red;
+  background-color: #616161;
+  color: #FFF;
+}
+.navbar h1 {
+  margin: 0;
 }

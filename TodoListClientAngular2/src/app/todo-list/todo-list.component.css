@@ -9,3 +9,8 @@ section.root {
   margin: 10px;
   background-color: #616161;
 }
+h3 {
+  color: #FFF;
+  margin: 0;
+  padding:  0 0 10px 0;
+}

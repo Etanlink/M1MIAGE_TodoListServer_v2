@@ -1,0 +1,13 @@
+section.item {
+  border: solid thin #444;
+  margin: 0 0 5px 0;
+  padding: 5px;
+  -webkit-transition: ease all 0.3s;
+  -moz-transition: ease all 0.3s;
+  -ms-transition: ease all 0.3s;
+  -o-transition: ease all 0.3s;
+  transition: ease all 0.3s;
+}
+.icons {
+  float: right;
+}
