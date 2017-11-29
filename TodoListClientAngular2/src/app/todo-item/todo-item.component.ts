@@ -13,11 +13,14 @@ export class TodoItemComponent implements OnInit, OnChanges {
   @Input() listId: ListID;
   @Input() clock: number;
   @Input() lists: TodoListWithItems[];
+
+  private date: number;
+  private description: string;
+
   private editingLabel = false;
   private editingDate = false;
-  private showingDetails = false;
-
   private editingDescription = false;
+  private showingDetails = false;
 
   public bgColor = "hsl(348, 100%, 61%)";
 
@@ -70,14 +73,14 @@ export class TodoItemComponent implements OnInit, OnChanges {
     this.editingDate = edit;
   }
 
-  setDate(dateD: number, dateF: number) {
-    this.todoListService.SERVER_UPDATE_ITEM_DATA(this.listId, this.item.id,
-      {categories: this.item.data.categories, dateD: dateD, dateF: dateF});
+  setDate(date: number) {
+    //this.todoListService.SERVER_UPDATE_ITEM_DATE();
     this.editDate(false);
   }
 
   setDescription(description: string) {
-    // TODO
+    this.todoListService.SERVER_UPDATE_ITEM_DATA(this.listId, this.item.id,
+      {description: description});
     this.editDescription(false);
   }
 
