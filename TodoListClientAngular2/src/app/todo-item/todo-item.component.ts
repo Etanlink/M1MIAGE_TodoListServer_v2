@@ -16,6 +16,9 @@ export class TodoItemComponent implements OnInit, OnChanges {
   private editingLabel = false;
   private editingDate = false;
   private showingDetails = false;
+
+  private editingDescription = false;
+
   public bgColor = "hsl(348, 100%, 61%)";
 
   constructor(private todoListService: TodoListService) {}
@@ -51,6 +54,14 @@ export class TodoItemComponent implements OnInit, OnChanges {
     return this.editingDate;
   }
 
+  isEditingDescription(): boolean {
+    return this.editingDescription;
+  }
+
+  editDescription(edit: boolean) {
+    this.editingDescription = edit;
+  }
+
   editLabel(edit: boolean) {
     this.editingLabel = edit;
   }
@@ -63,6 +74,11 @@ export class TodoItemComponent implements OnInit, OnChanges {
     this.todoListService.SERVER_UPDATE_ITEM_DATA(this.listId, this.item.id,
       {categories: this.item.data.categories, dateD: dateD, dateF: dateF});
     this.editDate(false);
+  }
+
+  setDescription(description: string) {
+    // TODO
+    this.editDescription(false);
   }
 
   getTheDateDString() {
