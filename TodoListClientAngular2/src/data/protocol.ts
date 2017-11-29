@@ -38,6 +38,7 @@ export type PassportUser = {
 };
 
 export type DataForItem = {
+  date: number,
   description: string;
 };
 

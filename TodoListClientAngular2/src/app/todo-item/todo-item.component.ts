@@ -74,38 +74,19 @@ export class TodoItemComponent implements OnInit, OnChanges {
   }
 
   setDate(date: number) {
-    //this.todoListService.SERVER_UPDATE_ITEM_DATE();
+    this.todoListService.SERVER_UPDATE_ITEM_DATA(this.listId, this.item.id,
+    {date: date, description: this.item.data.description});
     this.editDate(false);
   }
 
   setDescription(description: string) {
     this.todoListService.SERVER_UPDATE_ITEM_DATA(this.listId, this.item.id,
-      {description: description});
+      {date: this.item.data.date, description: description});
     this.editDescription(false);
   }
 
-  getTheDateDString() {
-    let d = new Date(this.item.data.dateD);
-    let day=d.getDate();
-    let minutes=d.getMinutes();
-    let str="";
-    str = d.getFullYear() + "-" + (d.getMonth() + 1) + "-"
-    if (day < 10) {
-      str = str + "0" + day + "T" + d.getHours() + ":";
-    } else {
-      str = str + day + "T" + d.getHours() + ":";
-    }
-
-    if (minutes < 10) {
-      str = str + "0" + minutes;
-    } else {
-      str = str + minutes;
-    }
-    return str;
-  }
-
-  getTheDateFString() {
-    let d = new Date(this.item.data.dateF);
+  getTheDateString() {
+    let d = new Date(this.item.data.date);
     let day = d.getDate();
     let minutes = d.getMinutes();
     let str = "";
@@ -124,28 +105,8 @@ export class TodoItemComponent implements OnInit, OnChanges {
     return str;
   }
 
-  getTheDateD() {
-    let d = new Date(this.item.data.dateD);
-    let day = d.getDate();
-    let minutes = d.getMinutes();
-    let str = "";
-    str = d.getFullYear() + "-" + (d.getMonth() + 1) + "-"
-    if (day < 10) {
-     str = str + "0" + day + " " + d.getHours() + ":";
-    } else {
-      str = str + day + " " + d.getHours() + ":";
-    }
-
-    if (minutes < 10) {
-      str = str + "0" + minutes;
-    } else {
-      str = str + minutes;
-    }
-    return str;
-  }
-
-  getTheDateF() {
-    let d = new Date(this.item.data.dateF);
+  getTheDate() {
+    let d = new Date(this.item.data.date);
     let day = d.getDate();
     let minutes = d.getMinutes();
     let str = "";
