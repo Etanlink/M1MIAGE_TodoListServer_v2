@@ -14,9 +14,6 @@ export class TodoItemComponent implements OnInit, OnChanges {
   @Input() clock: number;
   @Input() lists: TodoListWithItems[];
 
-  private date: number;
-  private description: string;
-
   private editingLabel = false;
   private editingDate = false;
   private editingDescription = false;

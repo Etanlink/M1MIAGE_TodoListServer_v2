@@ -14,6 +14,7 @@ export class TodoListComponent implements OnInit {
   @Input() lists: TodoListWithItems[];
 
   private editingLabel = false;
+  private editingDescription = false;
 
   constructor(private todoListService: TodoListService) { }
 
@@ -37,13 +38,27 @@ export class TodoListComponent implements OnInit {
     this.editingLabel = edit;
   }
 
+  setDescription(description: string) {
+    this.todoListService.SERVER_UPDATE_LIST_DATA(
+      this.list.id,
+      {description: description}
+    );
+  }
+
+  isEditingDescription(): boolean {
+    return this.editingDescription;
+  }
+
+  editDescription(edit: boolean) {
+    this.editingDescription = edit;
+  }
 
   createItem(label: string) {
     const id = this.todoListService.SERVER_CREATE_ITEM(
       this.list.id,
       label,
       false,
-      {categories: [],dateD: Date.now(),dateF: Date.now()}
+      {date: Date.now()}
     );
   }
 
