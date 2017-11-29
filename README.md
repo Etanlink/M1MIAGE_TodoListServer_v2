@@ -24,11 +24,11 @@ $ npm run prod
 
 | User story                                                                  | Acceptance criteria               | Binôme            | Done      |
 | -----------------------------------------                                   | --------------------------------- | ----------------- | --------- |
-| As (username), I want to rename a task list                                 |                                   |                   |    []    |
-| As (username), I want to add a description to a list                        |                                   |                   |    []    |
-| As (username), I want to add a description to a task                        |                                   |                   |    []    |
-| As (username), I want to order lists between them                           |                                   |                   |    []    |
-| As (username), I want to order tasks between them                           |                                   |                   |    []    |
-| As (username), I want to duplicate a task list                              |                                   |                   |    []    |
-| As (username), I want to share lists with others users                      |                                   |                   |    []    |
-| As (username), I want to export a list                                      |                                   |                   |    []    |
+| As Pauline, I want to rename a task list                                 |                                   |                   |    []    |
+| As Pauline, I want to add a description to a list                        |                                   |                   |    []    |
+| As Pauline, I want to add a description to a task                        |                                   |                   |    []    |
+| As Pauline, I want to order lists between them                           |                                   |                   |    []    |
+| As Pauline, I want to order tasks between them                           |                                   |                   |    []    |
+| As Pauline, I want to duplicate a task list                              |                                   |                   |    []    |
+| As Marc, I want to share lists with others users                      |                                   |                   |    []    |
+| As Marc, I want to export a list                                      |                                   |                   |    []    |
