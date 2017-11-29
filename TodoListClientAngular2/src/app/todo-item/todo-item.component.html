@@ -13,9 +13,9 @@
   <i (click)="delete()" class="fa fa-window-close fa-1x" aria-hidden="true"></i>
   <div *ngIf="isShowingDetails()">
     <div *ngIf="!isEditingDate()" (dblclick)="editDate(true)" class="is-small">Deadline : {{getTheDate()}}</div>
-    <form *ngIf="isEditingDate()" (submit)="setDate(newDateD.value,newDateF.value)">
+    <form *ngIf="isEditingDate()" (submit)="setDate(newDate.value)">
       <label>Deadline</label>
-      <input #newDateD type="datetime-local" value={{getTheDateString()}}/>
+      <input #newDate type="datetime-local" value={{getTheDateString()}}/>
       <button type="submit"><i class="fa fa-check-circle-o" aria-hidden="true"></i></button>
     </form>
   </div>
