@@ -1,4 +1,4 @@
-<section draggable [dragData]="getDragItem()" [style.backgroundColor]="bgColor">
+<section class="item" draggable [dragData]="getDragItem()" [style.backgroundColor]="bgColor">
   <input #isChecked type="checkbox" [ngModel]="item.checked" (ngModelChange)="check(isChecked.checked)" />
 
   <label class="subtitle is-5" *ngIf="!isEditingLabel()" (dblclick)="editLabel(true)">
