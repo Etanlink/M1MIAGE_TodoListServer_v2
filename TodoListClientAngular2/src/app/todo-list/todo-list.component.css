@@ -1,0 +1,11 @@
+section.root {
+  border: solid thin #444;
+  min-width: 250px;
+  max-width: 300px;
+  width: 20%;
+  display: inline-block;
+  padding: 10px;
+  vertical-align: top;
+  margin: 10px;
+  background-color: #616161;
+}
