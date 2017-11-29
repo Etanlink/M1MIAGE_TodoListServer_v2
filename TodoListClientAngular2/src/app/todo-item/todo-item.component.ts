@@ -75,7 +75,7 @@ export class TodoItemComponent implements OnInit, OnChanges {
 
   setDate(date: number) {
     this.todoListService.SERVER_UPDATE_ITEM_DATA(this.listId, this.item.id,
-    {date: date, description: this.item.data.description});
+      {date: date, description: this.item.data.description});
     this.editDate(false);
   }
 

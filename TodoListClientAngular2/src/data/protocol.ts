@@ -42,6 +42,9 @@ export type DataForItem = {
   description: string;
 };
 
+export type DataForList = {
+  description: string;
+};
 
 export type ItemJSON = {
   label: string,
