@@ -20,11 +20,11 @@ $ npm run prod
 
 ## TodoList
 
-**Fonctionnalités à réaliser**
+**Fonctionnalités à réaliser** (basées sur les scénarios vus en TD)
 
 | User story                                        | Acceptance criteria               | Binôme            | Done      |
 | -----------------------------------------         | --------------------------------- | ----------------- | --------- |
-| As Pauline, I want to rename a task list          |                                   |        Paul       |    [x]    |
+| As Pauline, I want to rename a task list          |                                   |       Paul        |    [x]    |
 | As Pauline, I want to add a description to a list |                                   |                   |    []     |
 | As Pauline, I want to add a description to a task |                                   |      Etienne      |    [x]    |
 | As Pauline, I want to order lists between them    |                                   |                   |    []    |
@@ -32,3 +32,8 @@ $ npm run prod
 | As Pauline, I want to duplicate a task list       |                                   |                   |    []    |
 | As Marc, I want to share lists with others users  |                                   |                   |    []    |
 | As Marc, I want to export a list                  |                                   |                   |    []    |
+
+| Others functionalities                            | Acceptance criteria               | Binôme            | Done      |
+| -----------------------------------------         | --------------------------------- | ----------------- | --------- |
+| As client, I want to use an app with CSS          |                                   | Anthony/Amandine  |    []     |
+| As an user, I want to use a responsive app        |                                   |                   |    []     |
