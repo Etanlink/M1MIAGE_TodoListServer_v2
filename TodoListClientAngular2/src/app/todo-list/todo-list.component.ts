@@ -15,6 +15,7 @@ export class TodoListComponent implements OnInit {
 
   private editingLabel = false;
   private editingDescription = false;
+  private showingDescription = false;
 
   constructor(private todoListService: TodoListService) { }
 
