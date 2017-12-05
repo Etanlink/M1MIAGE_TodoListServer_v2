@@ -25,7 +25,7 @@ $ npm run prod
 | User story                                        | Acceptance criteria               | Binôme            | Done      |
 | -----------------------------------------         | --------------------------------- | ----------------- | --------- |
 | As Pauline, I want to rename a task list          |                                   |       Paul        |    [x]    |
-| As Pauline, I want to add a description to a list |                                   |                   |    []     |
+| As Pauline, I want to add a description to a list |                                   |       Paul        |    [x]    |
 | As Pauline, I want to add a description to a task |                                   |      Etienne      |    [x]    |
 | As Pauline, I want to order lists between them    |                                   |                   |    []    |
 | As Pauline, I want to order tasks between them    |                                   |                   |    []    |
