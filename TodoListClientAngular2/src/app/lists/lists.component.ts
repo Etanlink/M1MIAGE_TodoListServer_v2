@@ -22,7 +22,7 @@ export class ListsComponent implements OnInit {
   createList(name: string) {
     const localListID = this.todoListService.SERVER_CREATE_NEW_LIST(name, {
       color: "#ffffff",
-      someOtherAttribute: "pourquoi pas un texte ?"
+      description: ""
       // Add other data here...
     });
   }

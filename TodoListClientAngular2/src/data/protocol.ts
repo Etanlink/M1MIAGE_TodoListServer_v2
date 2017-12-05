@@ -44,6 +44,7 @@ export type DataForItem = {
 
 export type DataForList = {
   description: string;
+  color: string;
 };
 
 export type ItemJSON = {
@@ -60,7 +61,7 @@ export type TodoListJSON = {
   items: ItemID[],
   id: ListID,
   clock: number,
-  data: Object // Possible extensions
+  data: object // Possible extensions
 };
 
 export type TodoListWithItems = {
@@ -68,7 +69,7 @@ export type TodoListWithItems = {
   id: ListID,
   items: ItemJSON[],
   clock: number,
-  data: Object // Possible extensions
+  data: DataForList // Possible extensions
 };
 
 export type DragItem = {

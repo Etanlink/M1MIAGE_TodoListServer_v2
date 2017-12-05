@@ -42,8 +42,16 @@ export class TodoListComponent implements OnInit {
   setDescription(description: string) {
     this.todoListService.SERVER_UPDATE_LIST_DATA(
       this.list.id,
-      {description: description}
+      {description: description,color:""}
     );
+  }
+
+  showDescription() {
+    this.showingDescription = ! this.showingDescription;
+  }
+
+  isShowingDescription(): boolean {
+    return this.showingDescription;
   }
 
   isEditingDescription(): boolean {
@@ -52,6 +60,11 @@ export class TodoListComponent implements OnInit {
 
   editDescription(edit: boolean) {
     this.editingDescription = edit;
+  }
+
+  getDescription()
+  {
+    return this.list.data.description;
   }
 
   createItem(label: string) {
@@ -66,6 +79,7 @@ export class TodoListComponent implements OnInit {
   delete() {
     this.todoListService.SERVER_DELETE_LIST(this.list.id);
   }
+
 
   getColor(): string {
     return this.list.data["color"] ? this.list.data["color"] : "#FFFFFF";

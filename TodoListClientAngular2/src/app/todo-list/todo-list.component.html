@@ -5,6 +5,15 @@
   <form *ngIf="isEditingLabel()" (submit)="setLabel(newLabel.value)">
     <input #newLabel type="text" [value]="list.name"/>
   </form>
+  <i (click)="showDescription()" class="fa fa-caret-square-o-down fa-1x" aria-hidden="true"></i>
+  <div *ngIf="isShowingDescription()">
+    <div *ngIf="!isEditingDescription()" (dblclick)="editDescription(true)" class="is-small">Description : {{getDescription()}}</div>
+    <form *ngIf="isEditingDescription()" (submit)="setDescription(newDesc.value)">
+      <label>Description</label>
+      <input #newDesc type="text" value={{getDescription()}}/>
+      <button type="submit"><i class="fa fa-check-circle-o" aria-hidden="true"></i></button>
+    </form>
+  </div>
   <section droppable (onDrop)="changeList($event)" class="items">
 
     <app-todo-item id="item"

@@ -4,7 +4,7 @@ import 'rxjs/add/operator/toPromise';
 import {
   ItemID, ListID,
   MESSAGE_FOR_SERVER, SERVER_UPDATE_ITEM_CHECK, SERVER_UPDATE_ITEM_LABEL, SERVER_UPDATE_ITEM_DATA, DataForItem, SERVER_UPDATE_LIST_NAME,
-  MESSAGE_FOR_CLIENT, TODOLISTS_NEW_STATE,
+  MESSAGE_FOR_CLIENT, TODOLISTS_NEW_STATE,DataForList,
   TodoListJSON, ItemJSON, TodoListWithItems, SERVER_DELETE_ITEM, SERVER_DELETE_LIST, SERVER_UPDATE_LIST_DATA
 } from "../data/protocol";
 export {
@@ -98,7 +98,7 @@ export class TodoListService {
   /*****************************************************************************************************************************************
    * Operations on lists *******************************************************************************************************************
    ****************************************************************************************************************************************/
-  SERVER_CREATE_NEW_LIST(name: string, data: Object = {}): string {
+  SERVER_CREATE_NEW_LIST(name: string, data: DataForList = {description:"",color:""}): string {
     const id = this.getLocalListId();
     this.ListUIs.push({
       name: name,
@@ -137,7 +137,7 @@ export class TodoListService {
     this.ListUIs = this.ListUIs.filter( L => L.id !== ListID );
   }
 
-  SERVER_UPDATE_LIST_DATA(ListID: ListID, data: Object) {
+  SERVER_UPDATE_LIST_DATA(ListID: ListID, data: DataForList) {
     const op: SERVER_UPDATE_LIST_DATA = {
       type: "SERVER_UPDATE_LIST_DATA",
       ListID: ListID,
@@ -256,7 +256,7 @@ export class TodoListService {
         name: null,
         items: null,
         id: listJSON.id,
-        data: {}
+        data: {description:"",color:""}
       };
       if (listUI.clock < listJSON.clock) {
         Object.assign(listUI, {
