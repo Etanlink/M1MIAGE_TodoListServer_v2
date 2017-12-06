@@ -117,13 +117,10 @@ export class TodoListService {
   }
 
   SERVER_DUPLICATE_LIST(listID: ListID) {
-    console.log("Duplicate !");
-    // On crée le clone de la liste
     const duplicateListId = this.SERVER_CREATE_NEW_LIST(this.getList(listID).name, this.getList(listID).data);
-    // On ajoute les items à la nouvelle liste
-    // pour chaque item
-    console.log(this.getList(listID).items);
-    // this.SERVER_CREATE_ITEM()
+    this.getList(listID).items.forEach( i =>
+      this.SERVER_CREATE_ITEM(duplicateListId, i.label, i.checked, i.data)
+    );
   }
 
   SERVER_UPDATE_LIST_NAME(Listid: ListID, name: string){
