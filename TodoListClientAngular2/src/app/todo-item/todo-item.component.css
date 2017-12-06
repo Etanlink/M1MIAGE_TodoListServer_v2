@@ -11,3 +11,6 @@ section.item {
 .icons {
   float: right;
 }
+.item {
+  color: #444;
+}
