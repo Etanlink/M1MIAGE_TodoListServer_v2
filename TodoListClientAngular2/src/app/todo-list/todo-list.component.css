@@ -22,3 +22,11 @@ h3 {
 .icons > i:hover {
   cursor: pointer;
 }
+.items {
+  border: solid 2px transparent;
+  -webkit-transition: ease all 0.2s;
+  -moz-transition: ease all 0.2s;
+  -ms-transition: ease all 0.2s;
+  -o-transition: ease all 0.2s;
+  transition: ease all 0.2s;
+}

@@ -10,7 +10,7 @@ body {
 /* Draggable*/
 
 .drag-border {
-  border: purple dashed 2px;
+  border: purple dashed 2px !important;
 }
 
 .drag-handle {
@@ -27,16 +27,16 @@ body {
 }
 
 /* Droppable */
-/*
+
 .drag-hint-border {
-  border: yellow dashed 2px;
-}*/
+  border: yellow dashed 2px !important;
+}
 
 .drag-over-border {
-  border: red dashed 2px;
+  border: red dashed 2px !important;
 }
 
 .drag-transit {
-  border: blue dashed 2px;
+  border: blue dashed 2px !important;
 }
 

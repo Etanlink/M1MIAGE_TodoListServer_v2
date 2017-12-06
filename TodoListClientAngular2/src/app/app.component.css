@@ -5,6 +5,7 @@
   background-color: #616161;
   padding: 20px;
   text-align: right;
+  position: relative;
 }
 .navbar h1 {
   margin: 0;
@@ -20,3 +21,4 @@
 .navbar-item img {
   border-radius: 100%;
 }
+
