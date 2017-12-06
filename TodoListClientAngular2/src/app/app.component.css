@@ -17,3 +17,6 @@
   display: inline-block;
   margin-left: 20px;
 }
+.navbar-item img {
+  border-radius: 100%;
+}
