@@ -2,10 +2,22 @@
   <h3 *ngIf="!isEditingLabel()" (dblclick)="editLabel(true)">
     {{list.name}}&nbsp;&nbsp;
   </h3>
+
   <form *ngIf="isEditingLabel()" (submit)="setLabel(newLabel.value)">
     <input #newLabel type="text" [value]="list.name"/>
   </form>
-  <i (click)="showDescription()" class="fa fa-caret-square-o-down fa-1x" aria-hidden="true"></i>
+
+  <div class="icons">
+    <!-- Icones de la liste :
+          dérouler description
+          dupliquer la liste
+          supprimer la liste
+    -->
+    <i (click)="showDescription()" class="fa fa-angle-down" aria-hidden="true"></i>
+    <i class="fa fa-clone" aria-hidden="true"></i>
+    <i (click)="delete()" class="fa fa-times" aria-hidden="true"></i>
+  </div>
+
   <div *ngIf="isShowingDescription()">
     <div *ngIf="!isEditingDescription()" (dblclick)="editDescription(true)" class="is-small">Description : {{getDescription()}}</div>
     <form *ngIf="isEditingDescription()" (submit)="setDescription(newDesc.value)">
