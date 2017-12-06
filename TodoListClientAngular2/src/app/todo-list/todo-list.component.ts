@@ -22,8 +22,6 @@ export class TodoListComponent implements OnInit {
   ngOnInit() {
   }
 
-
-
   setLabel(label: string) {
     if (label === "") {
       this.delete();
@@ -41,22 +39,21 @@ export class TodoListComponent implements OnInit {
     this.editingLabel = edit;
   }
 
-  placeUp(dest : ItemID,source : ItemID)
-{
-    let itemSourcetab = this.list.items.filter(item => item.id==source);
-    let itemSource = itemSourcetab.pop();
-    let interTab = this.list.items.filter(item => item.id !== source);
-    let indexDest = interTab.findIndex(item => item.id == dest);
-    let firstPart = interTab.slice(0,indexDest-1);
+  placeUp(dest: ItemID, source: ItemID) {
+    const itemSourcetab = this.list.items.filter(item => item.id === source);
+    const itemSource = itemSourcetab.pop();
+    const interTab = this.list.items.filter(item => item.id !== source);
+    const indexDest = interTab.findIndex(item => item.id === dest);
+    const firstPart = interTab.slice(0, indexDest - 1);
     firstPart.push(itemSource as ItemJSON);
-    let secondPart = interTab.slice(indexDest,this.list.items.length);
+    const secondPart = interTab.slice(indexDest, this.list.items.length);
     this.list.items = firstPart.concat(secondPart);
   }
 
   setDescription(description: string) {
     this.todoListService.SERVER_UPDATE_LIST_DATA(
       this.list.id,
-      {description: description,color:""}
+      {description: description, color: ""}
     );
   }
 
@@ -76,8 +73,7 @@ export class TodoListComponent implements OnInit {
     this.editingDescription = edit;
   }
 
-  getDescription()
-  {
+  getDescription(){
     return this.list.data.description;
   }
 
@@ -108,7 +104,7 @@ export class TodoListComponent implements OnInit {
   }
 
   /* Add drag&drop*/
-  changeList(dragEvent) {
+  dragItem(dragEvent) {
     const dragItem: DragItem = dragEvent.dragData;
     this.todoListService.SERVER_CHANGE_ITEMLIST(dragItem.listId, dragItem.item.id, this.list.id);
   }

@@ -28,7 +28,7 @@
       <button type="submit"><i class="fa fa-check-circle-o" aria-hidden="true"></i></button>
     </form>
   </div>
-  <section droppable (onDrop)="changeList($event)" class="items">
+  <section droppable (onDrop)="dragItem($event)" class="items">
 
     <app-todo-item id="item"
                    *ngFor="let item of list.items"
