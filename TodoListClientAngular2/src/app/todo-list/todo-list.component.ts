@@ -90,7 +90,6 @@ export class TodoListComponent implements OnInit {
     this.todoListService.SERVER_DELETE_LIST(this.list.id);
   }
 
-
   getColor(): string {
     return this.list.data["color"] ? this.list.data["color"] : "#FFFFFF";
   }
@@ -109,10 +108,9 @@ export class TodoListComponent implements OnInit {
     this.todoListService.SERVER_CHANGE_ITEMLIST(dragItem.listId, dragItem.item.id, this.list.id);
   }
 
-  ordonnate(dragEvent,dest : ItemID)
-  {
+  ordonnate(dragEvent, dest: ItemID) {
     const dragItem: DragItem = dragEvent.dragData;
-    this.placeUp(dest,dragItem.item.id);
+    this.placeUp(dest, dragItem.item.id);
   }
 
   duplicateList() {
