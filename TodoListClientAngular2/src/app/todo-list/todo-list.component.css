@@ -13,4 +13,10 @@ h3 {
   color: #FFF;
   margin: 0;
   padding:  0 0 10px 0;
+  display: inline-block;
+}
+.icons {
+  color: white;
+  display: inline-block;
+  float: right;
 }
