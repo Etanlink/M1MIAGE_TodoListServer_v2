@@ -27,9 +27,10 @@ $ npm run prod
 | As Pauline, I want to rename a task list          |                                   |       Paul        |    [x]    |
 | As Pauline, I want to add a description to a list |                                   |       Paul        |    [x]    |
 | As Pauline, I want to add a description to a task |                                   |      Etienne      |    [x]    |
+| As Pauline, I want to check an item and see it    |                                   |                   |    []    |
 | As Pauline, I want to order lists between them    |                                   |                   |    []    |
 | As Pauline, I want to order tasks between them    |                                   |                   |    []    |
-| As Pauline, I want to duplicate a task list       |                                   |                   |    []    |
+| As Pauline, I want to duplicate a task list       |                                   |      Etienne      |    [x]    |
 | As Marc, I want to share lists with others users  |                                   |                   |    []    |
 | As Marc, I want to export a list                  |                                   |                   |    []    |
 
