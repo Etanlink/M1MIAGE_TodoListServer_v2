@@ -1,6 +1,6 @@
 import {ChangeDetectionStrategy, Component, Input, OnInit} from '@angular/core';
 import {TodoListWithItems, TodoListService} from "../todo-list.service";
-import {DragItem, ItemJSON} from "../../data/protocol";
+import {DragItem, ItemJSON, ItemID} from "../../data/protocol";
 
 @Component({
   selector: 'app-todo-list',
@@ -22,6 +22,8 @@ export class TodoListComponent implements OnInit {
   ngOnInit() {
   }
 
+
+
   setLabel(label: string) {
     if (label === "") {
       this.delete();
@@ -37,6 +39,18 @@ export class TodoListComponent implements OnInit {
 
   editLabel(edit: boolean) {
     this.editingLabel = edit;
+  }
+
+  placeUp(dest : ItemID,source : ItemID)
+  {
+    let itemSourcetab = this.list.items.filter(item => item.id==source);
+    let itemSource = itemSourcetab.pop();
+    let interTab = this.list.items.filter(item => item.id !== source);
+    let indexDest = interTab.findIndex(item => item.id == dest);
+    let firstPart = interTab.slice(0,indexDest-1);
+    firstPart.push(itemSource as ItemJSON);
+    let secondPart = interTab.slice(indexDest,this.list.items.length);
+    this.list.items = firstPart.concat(secondPart);
   }
 
   setDescription(description: string) {
