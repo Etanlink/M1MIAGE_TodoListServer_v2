@@ -109,6 +109,12 @@ export class TodoListComponent implements OnInit {
     this.todoListService.SERVER_CHANGE_ITEMLIST(dragItem.listId, dragItem.item.id, this.list.id);
   }
 
+  ordonnate(dragEvent,dest : ItemID)
+  {
+    const dragItem: DragItem = dragEvent.dragData;
+    this.placeUp(dest,dragItem.item.id);
+  }
+
   duplicateList() {
     this.todoListService.SERVER_DUPLICATE_LIST(this.list.id);
   }

@@ -1,6 +1,6 @@
 import {ChangeDetectionStrategy, Component, Input, OnChanges, OnInit, SimpleChanges} from '@angular/core';
 import {TodoListWithItems,ListID, ItemJSON, TodoListService} from "../todo-list.service";
-import {DragItem} from "../../data/protocol";
+import {DragItem,ItemID} from "../../data/protocol";
 
 @Component({
   selector: 'app-todo-item',
