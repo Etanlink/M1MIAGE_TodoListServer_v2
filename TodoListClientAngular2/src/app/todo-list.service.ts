@@ -98,7 +98,7 @@ export class TodoListService {
   /*****************************************************************************************************************************************
    * Operations on lists *******************************************************************************************************************
    ****************************************************************************************************************************************/
-  SERVER_CREATE_NEW_LIST(name: string, data: DataForList = {description:"",color:""}): string {
+  SERVER_CREATE_NEW_LIST(name: string, data: DataForList = {description: "", color: ""}): string {
     const id = this.getLocalListId();
     this.ListUIs.push({
       name: name,
@@ -116,9 +116,17 @@ export class TodoListService {
     return id;
   }
 
+  SERVER_DUPLICATE_LIST(listID: ListID) {
+    console.log("Duplicate !");
+    // On crée le clone de la liste
+    const duplicateListId = this.SERVER_CREATE_NEW_LIST(this.getList(listID).name, this.getList(listID).data);
+    // On ajoute les items à la nouvelle liste
+    // pour chaque item
+    console.log(this.getList(listID).items);
+    // this.SERVER_CREATE_ITEM()
+  }
 
-  SERVER_UPDATE_LIST_NAME(Listid: ListID, name : string)
-  {
+  SERVER_UPDATE_LIST_NAME(Listid: ListID, name: string){
     const op: SERVER_UPDATE_LIST_NAME = {
       type: "SERVER_UPDATE_LIST_NAME",
       ListID: Listid,

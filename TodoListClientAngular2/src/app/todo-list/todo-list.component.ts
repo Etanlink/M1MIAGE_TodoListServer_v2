@@ -42,7 +42,7 @@ export class TodoListComponent implements OnInit {
   }
 
   placeUp(dest : ItemID,source : ItemID)
-  {
+{
     let itemSourcetab = this.list.items.filter(item => item.id==source);
     let itemSource = itemSourcetab.pop();
     let interTab = this.list.items.filter(item => item.id !== source);
@@ -111,5 +111,9 @@ export class TodoListComponent implements OnInit {
   changeList(dragEvent) {
     const dragItem: DragItem = dragEvent.dragData;
     this.todoListService.SERVER_CHANGE_ITEMLIST(dragItem.listId, dragItem.item.id, this.list.id);
+  }
+
+  duplicateList() {
+    this.todoListService.SERVER_DUPLICATE_LIST(this.list.id);
   }
 }
