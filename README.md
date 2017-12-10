@@ -36,5 +36,5 @@ $ npm run prod
 
 | Others functionalities                            | Acceptance criteria               | Binôme            | Done      |
 | -----------------------------------------         | --------------------------------- | ----------------- | --------- |
-| As a client, I want to use an app with CSS        |                                   | Anthony/Amandine  |    []     |
-| As a user, I want to use a responsive app         |                                   |                   |    []     |
+| As a client, I want to use a beautiful app (HTML/CSS) |                               | Anthony/Amandine  |    []     |
+| As a user, I want to use a responsive app         |                                   |      Anthony      |    [x]     |
