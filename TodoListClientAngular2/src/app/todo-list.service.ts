@@ -184,6 +184,21 @@ export class TodoListService {
     return id;
   }
 
+  CHANGE_ITEM_ORDER(List : ListID, ItemSource : ItemID, ItemDest : ItemID)
+  {
+    let liste = this.getList(List);
+    const itemSourcetab = liste.items.filter(item => item.id === ItemSource);
+    const itemSource = itemSourcetab.pop();
+    const interTab = liste.items.filter(item => item.id !== ItemSource);
+    const indexDest = interTab.findIndex(item => item.id == ItemDest);
+    const firstPart = interTab.slice(0, indexDest);
+    firstPart.push(itemSource as ItemJSON);
+    const secondPart = interTab.slice(indexDest, liste.items.length);
+    liste.items = firstPart.concat(secondPart);
+    console.log(firstPart);
+    console.log(secondPart);
+  }
+
   SERVER_CHANGE_ITEMLIST(ListSrc: ListID, ItemID: ItemID, ListDestId: ListID): string {
     const item = this.getItem(ListSrc, ItemID);
     const newId = this.SERVER_CREATE_ITEM(ListDestId, item.label, item.checked, item.data);

@@ -39,17 +39,6 @@ export class TodoListComponent implements OnInit {
     this.editingLabel = edit;
   }
 
-  placeUp(dest: ItemID, source: ItemID) {
-    const itemSourcetab = this.list.items.filter(item => item.id === source);
-    const itemSource = itemSourcetab.pop();
-    const interTab = this.list.items.filter(item => item.id !== source);
-    const indexDest = interTab.findIndex(item => item.id === dest);
-    const firstPart = interTab.slice(0, indexDest - 1);
-    firstPart.push(itemSource as ItemJSON);
-    const secondPart = interTab.slice(indexDest, this.list.items.length);
-    this.list.items = firstPart.concat(secondPart);
-  }
-
   setDescription(description: string) {
     this.todoListService.SERVER_UPDATE_LIST_DATA(
       this.list.id,
@@ -108,10 +97,7 @@ export class TodoListComponent implements OnInit {
     this.todoListService.SERVER_CHANGE_ITEMLIST(dragItem.listId, dragItem.item.id, this.list.id);
   }
 
-  ordonnate(dragEvent, dest: ItemID) {
-    const dragItem: DragItem = dragEvent.dragData;
-    this.placeUp(dest, dragItem.item.id);
-  }
+
 
   duplicateList() {
     this.todoListService.SERVER_DUPLICATE_LIST(this.list.id);

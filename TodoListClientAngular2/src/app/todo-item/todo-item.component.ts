@@ -157,6 +157,16 @@ export class TodoItemComponent implements OnInit, OnChanges {
     };
   }
 
+  placeUp(itemSource:ItemID)
+  {
+    this.todoListService.CHANGE_ITEM_ORDER(this.listId,itemSource,this.item.id);
+  }
+
+
+  ordonnate(dragEvent, dest: ItemID) {
+    const dragItem: DragItem = dragEvent.dragData;
+    this.placeUp(dragItem.item.id);
+  }
   colorIfChecked(): string {
     if(this.item.checked) {
       return "#bdbdbd";
