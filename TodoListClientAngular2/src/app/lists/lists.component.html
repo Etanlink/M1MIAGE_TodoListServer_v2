@@ -5,10 +5,11 @@
 -->
 
 <section class="container">
-  <app-todo-list *ngFor="let list of getLists()" [list]="list" [clock]="list.clock" [lists]="getLists()"></app-todo-list>
   <section class="new_state">
     <form (ngSubmit)="createList(newListName.value); newListName.value=''">
-      <input type="text" placeholder=" Nouvel état" #newListName/>
+      <input class="new_list" type="text" placeholder=" Nouvelle liste" #newListName/>
     </form>
   </section>
+
+  <app-todo-list *ngFor="let list of getLists()" [list]="list" [clock]="list.clock" [lists]="getLists()"></app-todo-list>
 </section>

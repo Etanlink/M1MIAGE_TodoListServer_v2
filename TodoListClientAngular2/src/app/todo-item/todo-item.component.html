@@ -16,7 +16,7 @@
       <i (click)="delete()" class="fa fa-times" aria-hidden="true"></i>
     </div>
 
-    <div *ngIf="isShowingDetails()">
+    <div class="detailsItem" *ngIf="isShowingDetails()">
       <div *ngIf="!isEditingDescription()" (dblclick)="editDescription(true)" class="is-small">Description : {{getDescription()}}</div>
       <form *ngIf="isEditingDescription()" (submit)="setDescription(newDesc.value)">
         <label>Description</label>

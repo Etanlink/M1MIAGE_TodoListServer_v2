@@ -20,15 +20,18 @@
     <i (click)="delete()" class="fa fa-times" aria-hidden="true"></i>
   </div>
 
-  <div *ngIf="isShowingDescription()">
+  <div class="descr" *ngIf="isShowingDescription()">
     <div *ngIf="!isEditingDescription()" (dblclick)="editDescription(true)" class="is-small">Description : {{getDescription()}}</div>
     <form *ngIf="isEditingDescription()" (submit)="setDescription(newDesc.value)">
       <label>Description</label>
-      <input #newDesc type="text" value={{getDescription()}}/>
+      <input #newDesc type="text" placeholder="Description" value={{getDescription()}}/>
       <button type="submit"><i class="fa fa-check-circle-o" aria-hidden="true"></i></button>
     </form>
   </div>
   <section droppable (onDrop)="dragItem($event)" class="items">
+    <form (ngSubmit)="createItem(newItemLabel.value); newItemLabel.value=''">
+      <input class="inputItem" type="text" placeholder=" Nouvelle tâche" #newItemLabel/>
+    </form>
 
     <app-todo-item id="item"
                    *ngFor="let item of list.items"
@@ -38,8 +41,5 @@
                    [lists]="lists">
     </app-todo-item>
 
-    <form (ngSubmit)="createItem(newItemLabel.value); newItemLabel.value=''">
-      <input id="inputItem" type="text" placeholder=" Nouvelle tâche" #newItemLabel/>
-    </form>
   </section>
 </section>

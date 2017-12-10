@@ -12,6 +12,12 @@ section.item {
 .icons {
   float: right;
 }
+.icons > i {
+  margin-right: 5px;
+}
 .item {
   color: #444;
+}
+.detailsItem {
+  margin-top: 5px;
 }
