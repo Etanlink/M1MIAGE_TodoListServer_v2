@@ -159,7 +159,10 @@ export class TodoItemComponent implements OnInit, OnChanges {
 
   placeUp(itemSource:ItemID)
   {
-    this.todoListService.CHANGE_ITEM_ORDER(this.listId,itemSource,this.item.id);
+    if (itemSource!=this.item.id)
+    {
+      this.todoListService.CHANGE_ITEM_ORDER(this.listId,itemSource,this.item.id);
+    }
   }
 
 
