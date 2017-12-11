@@ -19,6 +19,7 @@ h3 {
 .icons {
   color: white;
   display: inline-block;
+  float: right;
 }
 
 .icons>i {
@@ -30,18 +31,17 @@ h3 {
   cursor: pointer;
   color: #77A1FF;
 }
-<<<<<<< HEAD
 
-=======
-.icons > i.dupListe:hover {
+.icons>i.dupListe:hover {
   cursor: pointer;
   color: #CF7DFF;
 }
-.icons > i.supprListe:hover {
+
+.icons>i.supprListe:hover {
   cursor: pointer;
   color: #C01607;
 }
->>>>>>> fb99c0af0af06c2d2563a12566d4095457431016
+
 .items {
   border: solid 2px transparent;
   -webkit-transition: ease all 0.2s;
