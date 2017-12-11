@@ -31,7 +31,7 @@ $ npm run prod
 | As Pauline, I want to order lists between them    |                                   |                   |    []    |
 | As Pauline, I want to order tasks between them    |                                   |                   |    []    |
 | As Pauline, I want to duplicate a task list       |                                   |      Etienne      |    [x]    |
-| As Marc, I want to share lists with others users  |                                   |                   |    []    |
+| As Marc, I want to share lists with others users  |                                   |      Etienne      |    [x]    |
 | As Marc, I want to export a list                  |                                   |                   |    []    |
 
 | Others functionalities                            | Acceptance criteria               | Binôme            | Done      |
