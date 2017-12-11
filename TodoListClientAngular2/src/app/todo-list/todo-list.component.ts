@@ -72,12 +72,14 @@ export class TodoListComponent implements OnInit {
   }
 
   createItem(label: string) {
-    const id = this.todoListService.SERVER_CREATE_ITEM(
-      this.list.id,
-      label,
-      false,
-      {date: Date.now()}
-    );
+    if (label != "") {
+      const id = this.todoListService.SERVER_CREATE_ITEM(
+        this.list.id,
+        label,
+        false,
+        {date: Date.now()}
+      );
+    }
   }
 
   delete() {
