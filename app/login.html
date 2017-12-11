@@ -3,16 +3,59 @@
 <head>
     <meta charset="UTF-8">
     <title>TodoList++</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <style>
+        body {
+            color: #444444;
+            font-family: 'Roboto', sans-serif;
+            text-align: center;
+        }
+        .titre {
+            margin-bottom: 10%;
+        }
+        .indications {
+            margin-bottom: 5%;
+        }
+        table {
+            width: 150px;
+        }
+        i {
+            color: #fff;
+        }
+        .goo {
+            margin-bottom: 20px;
+            padding: 7px;
+            background-color: #DD4B39;
+        }
+        .goo:hover {
+            background-color: #ED503D;
+        }
+        .fb {
+            padding: 7px;
+            background-color: #4C69BA;
+        }
+        .fb:hover {
+            background-color: #5B7BD5;
+        }
+
+    </style>
 </head>
 <body>
-    <h1>Gestionnaire de listes de choses à faire</h1>
-    <section>
-        <h2>Identifiez vous via une de ces options</h2>
-        <ul>
-            <li><a class="logo google"   href="/auth/google"  >Google</a></li>
-            <li><a class="logo facebook" href="/auth/facebook">Facebook</a></li>
-        </ul>
+    <section class="titre">
+        <h1>Gestionnaire de listes de choses à faire</h1>
     </section>
-
+    <section class="indications">
+        <h3>Identifiez-vous via l'une de ces options :</h3>
+    </section>
+    <section class="liens">
+        <table class="goo" align="center"><tr>
+            <td class="td_icon"><i class="fa fa-google" aria-hidden="true"></i></td>
+            <td><a class="logo google"   href="/auth/google">Google</a></td>
+        </tr></table>
+        <table class="fb" align="center"><tr>
+            <td class="td_icon"><i class="fa fa-facebook" aria-hidden="true"></i></td>
+            <td><a class="logo facebook" href="/auth/facebook">Facebook</a></td>
+        </tr></table>
+    </section>
 </body>
 </html>
