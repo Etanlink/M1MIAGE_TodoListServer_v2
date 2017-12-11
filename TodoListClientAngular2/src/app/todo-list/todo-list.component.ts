@@ -63,7 +63,12 @@ export class TodoListComponent implements OnInit {
   }
 
   getDescription(){
-    return this.list.data.description;
+    if(this.list.data.description.length == 0) {
+      return "Aucune description";
+    }
+    else {
+      return this.list.data.description;
+    }
   }
 
   createItem(label: string) {
