@@ -1,7 +1,7 @@
 <section class="item" draggable [dragData]="getDragItem()"  [style.backgroundColor]="colorIfChecked()">
-  
+
   <section (onDrop)="ordonnate($event,item.id)">
-    
+
     <input #isChecked type="checkbox" [ngModel]="item.checked" (ngModelChange)="check(isChecked.checked)" />
 
     <label class="subtitle is-5" *ngIf="!isEditingLabel()" (dblclick)="editLabel(true)">
@@ -13,22 +13,23 @@
 
     <div class="icons">
       <!-- icone pour afficher les détails dans un item -->
-      <i (click)="showDetails()" class="fa fa-angle-down" aria-hidden="true"></i>
+      <i *ngIf="showingDetails" (click)="showDetails()" class="fa fa-angle-down" aria-hidden="true"></i>
+      <i *ngIf="!showingDetails" (click)="showDetails()" class="fa fa-angle-up" aria-hidden="true"></i>
       <!-- icone pour supprimer un item -->
       <i (click)="delete()" class="fa fa-times" aria-hidden="true"></i>
     </div>
 
     <div class="detailsItem" *ngIf="isShowingDetails()">
       <div *ngIf="!isEditingDescription()" (dblclick)="editDescription(true)" class="is-small">Description : {{getDescription()}}</div>
-      
+
       <form *ngIf="isEditingDescription()" (submit)="setDescription(newDesc.value)">
         <label>Description</label>
         <input #newDesc type="text" value={{getDescription()}}/>
         <button type="submit"><i class="fa fa-check-circle-o" aria-hidden="true"></i></button>
       </form>
-      
+
       <div *ngIf="!isEditingDate()" (dblclick)="editDate(true)" class="is-small">Deadline : {{getTheDate()}}</div>
-      
+
       <form *ngIf="isEditingDate()" (submit)="setDate(newDate.value)">
         <label>Deadline</label>
         <input #newDate type="datetime-local" value={{getTheDateString()}}/>
