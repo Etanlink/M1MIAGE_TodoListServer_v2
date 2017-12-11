@@ -70,9 +70,13 @@ export class TodoItemComponent implements OnInit, OnChanges {
     this.editingDate = edit;
   }
 
-  getDescription()
-  {
-    return this.item.data.description;
+  getDescription(){
+    if(this.item.data.description == null) {
+      return "Aucune description";
+    }
+    else {
+      return this.item.data.description;
+    }
   }
   setDate(date: number) {
     this.todoListService.SERVER_UPDATE_ITEM_DATA(this.listId, this.item.id,
