@@ -28,18 +28,21 @@
       <button type="submit"><i class="fa fa-check-circle-o" aria-hidden="true"></i></button>
     </form>
   </div>
-  <section droppable (onDrop)="dragItem($event)" class="items">
+  
+  <section class="items">
     <form (ngSubmit)="createItem(newItemLabel.value); newItemLabel.value=''">
       <input class="inputItem" type="text" placeholder=" Nouvelle tâche" #newItemLabel/>
     </form>
 
-    <app-todo-item id="item"
-                   *ngFor="let item of list.items"
-                   [clock]="item.clock"
-                   [item]="item"
-                   [listId]="list.id"
-                   [lists]="lists">
-    </app-todo-item>
+    <div droppable (onDrop)="dragItem($event)" class='itemsContainer'>
+        <app-todo-item id="item"
+        *ngFor="let item of list.items"
+        [clock]="item.clock"
+        [item]="item"
+        [listId]="list.id"
+        [lists]="lists">
+        </app-todo-item>
+    </div>
 
   </section>
 </section>

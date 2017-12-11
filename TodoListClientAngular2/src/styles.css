@@ -29,11 +29,11 @@ body {
 /* Droppable */
 
 .drag-hint-border {
-  border: yellow dashed 2px !important;
+  border: white dashed 2px !important;
 }
 
 .drag-over-border {
-  border: red dashed 2px !important;
+  border: #77A1FF dashed 2px !important;
 }
 
 .drag-transit {

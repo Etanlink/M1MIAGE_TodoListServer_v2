@@ -145,7 +145,7 @@ export class TodoItemComponent implements OnInit, OnChanges {
   }
 
   changeList(listDest: ListID) {
-    this.todoListService.SERVER_CHANGE_ITEMLIST(this.listId,this.item.id, listDest);
+    this.todoListService.SERVER_CHANGE_ITEMLIST(this.listId, this.item.id, listDest);
     this.todoListService.SERVER_DELETE_ITEM(this.listId, this.item.id);
   }
 
@@ -157,24 +157,21 @@ export class TodoItemComponent implements OnInit, OnChanges {
     };
   }
 
-  placeUp(itemSource:ItemID)
-  {
-    if (itemSource!=this.item.id)
-    {
-      this.todoListService.CHANGE_ITEM_ORDER(this.listId,itemSource,this.item.id);
+  placeUp(itemSource: ItemID) {
+    if (itemSource !== this.item.id) {
+      this.todoListService.CHANGE_ITEM_ORDER(this.listId, itemSource, this.item.id);
     }
   }
-
 
   ordonnate(dragEvent, dest: ItemID) {
     const dragItem: DragItem = dragEvent.dragData;
     this.placeUp(dragItem.item.id);
   }
+
   colorIfChecked(): string {
-    if(this.item.checked) {
+    if (this.item.checked) {
       return "#bdbdbd";
-    }
-    else {
+    } else {
       return "#FFF";
     }
   }
