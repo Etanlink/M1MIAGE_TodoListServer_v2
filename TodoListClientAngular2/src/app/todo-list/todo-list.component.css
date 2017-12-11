@@ -54,7 +54,7 @@ input.inputItem {
   min-height: 50px;
 }
 
-.itemsContainer:empty { 
+.itemsContainer:empty {
   display: none;
 }
 
@@ -62,4 +62,9 @@ input.inputItem {
 .itemsContainer:nth-child(odd) {
   background-color: rgba(0, 0, 0, 0.2);
   padding: 10px;
+}
+
+.done {
+  border-top: solid thin #444;
+  padding-top: 5px;
 }

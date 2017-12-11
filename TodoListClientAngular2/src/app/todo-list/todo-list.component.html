@@ -35,15 +35,26 @@
       <input class="inputItem" type="text" placeholder=" Nouvelle tâche" #newItemLabel/>
     </form>
 
-    <div droppable (onDrop)="dragItem($event)" class='itemsContainer'>
-        <app-todo-item id="item"
-        *ngFor="let item of list.items"
-        [clock]="item.clock"
-        [item]="item"
-        [listId]="list.id"
-        [lists]="lists">
-        </app-todo-item>
-    </div>
+      <div droppable (onDrop)="dragItem($event)" class='itemsContainer'>
+        <div class="notDone">
+          <app-todo-item id="itemNotDone"
+                         *ngFor="let item of filterNotDoneItems()"
+                         [clock]="item.clock"
+                         [item]="item"
+                         [listId]="list.id"
+                         [lists]="lists">
+          </app-todo-item>
+        </div>
+        <div class="done">
+          <app-todo-item id="itemDone"
+                         *ngFor="let item of filterDoneItems()"
+                         [clock]="item.clock"
+                         [item]="item"
+                         [listId]="list.id"
+                         [lists]="lists">
+          </app-todo-item>
+        </div>
+      </div>
 
   </section>
 </section>

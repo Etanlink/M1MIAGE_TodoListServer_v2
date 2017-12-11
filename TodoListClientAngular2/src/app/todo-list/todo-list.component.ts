@@ -104,4 +104,11 @@ export class TodoListComponent implements OnInit {
   duplicateList() {
     this.todoListService.SERVER_DUPLICATE_LIST(this.list.id);
   }
+
+  filterNotDoneItems() {
+    return this.list.items.filter(x => x.checked == false);
+  }
+  filterDoneItems() {
+    return this.list.items.filter(x => x.checked == true);
+  }
 }
