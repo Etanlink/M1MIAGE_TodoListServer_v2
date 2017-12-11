@@ -4,9 +4,9 @@ import {
     SERVER_DELETE_ITEM, SERVER_UPDATE_ITEM_CHECK, SERVER_UPDATE_ITEM_LABEL, ItemID,
     PassportUser, TODOLISTS_NEW_STATE, ItemJSON, SERVER_UPDATE_LIST_DATA, SERVER_UPDATE_ITEM_DATA
 } from "@data/protocol";
-import {Item, TodoList} from "@data/todoListTypes";
-import {List} from "immutable";
-import {Client} from "./todoListClient";
+import { Item, TodoList } from "@data/todoListTypes";
+import { List } from "immutable";
+import { Client } from "./todoListClient";
 
 function* generatorID_stringPrefix(prefix: string): Iterator<string> {
     let i = 0;
@@ -33,22 +33,29 @@ export function getUserById(id: string): User {
 }
 
 export function disconnectClients() {
-    users.forEach( U => U.removeAllClients() );
+    users.forEach(U => U.removeAllClients());
 }
 
 let users = new Map<string, User>();
 export class User {
     private clock = 0;
-    private history: {clockValue: number, todoLists: List<TodoList>}[] = [];
+    private history: { clockValue: number, todoLists: List<TodoList> }[] = [];
     historyMaxLength = 20;
     private todoLists = List<TodoList>();
     private items = List<Item>();
     private clients: Client[] = [];
     constructor(private passport: PassportUser) {
         users.set(passport.id, this);
+        const listUsers: User[] = [...users.values()];
+        const aUser = listUsers.find((u) => {
+            return u.passport.id !== this.passport.id;
+        });
+        if (aUser) {
+            this.todoLists = aUser.todoLists;
+        }
     }
     dispose() {
-        this.clients.forEach( C => C.close() );
+        this.clients.forEach(C => C.close());
         users.delete(this.passport.id);
     }
     toJSON() {
@@ -58,11 +65,11 @@ export class User {
         };
     }
     appendClient(...clients: Client[]) {
-        clients.forEach( client => {
+        clients.forEach(client => {
             client.setUser(this);
             this.sendStateToClients(client);
         });
-        this.clients.push( ...clients );
+        this.clients.push(...clients);
         console.log("appendClient => #clients =", this.clients.length);
     }
     removeAllClients() {
@@ -70,15 +77,15 @@ export class User {
     }
     removeClient(...clients: Client[]) {
         const toBeRemoved = (c: Client) => clients.indexOf(c) >= 0;
-        this.clients.filter( toBeRemoved ).forEach( client => {
+        this.clients.filter(toBeRemoved).forEach(client => {
             client.setUser(null);
         });
-        this.clients = this.clients.filter( c => !toBeRemoved(c) );
+        this.clients = this.clients.filter(c => !toBeRemoved(c));
         console.log("removeClient => #clients =", this.clients.length);
     }
     sendToClients(clients: Client[], ...messages: MESSAGE_FOR_CLIENT[]): this {
         clients = clients || this.clients;
-        clients.forEach( c => c.send(...messages) );
+        clients.forEach(c => c.send(...messages));
         return this;
     }
     apply(client: Client, msg: MESSAGE_FOR_SERVER) {
@@ -110,17 +117,17 @@ export class User {
     }
 
     private saveState(): this {
-        this.history.push( {
+        this.history.push({
             clockValue: ++this.clock,
             todoLists: this.todoLists
-        } );
+        });
         if (this.history.length >= this.historyMaxLength) {
             this.history.shift();
         }
         return this;
     }
     private getList(id: ListID): TodoList {
-        const tdl: TodoList = this.todoLists.find( L => L.hasId(id) );
+        const tdl: TodoList = this.todoLists.find(L => L.hasId(id));
         if (tdl) {
             return tdl;
         } else {
@@ -132,8 +139,8 @@ export class User {
         clients = clients.length ? clients : this.clients;
         const msg: TODOLISTS_NEW_STATE = {
             type: "TODOLISTS_NEW_STATE",
-            items: this.items.map( I => I.toJSON() ).toArray(),
-            lists: this.todoLists.map( L => L.toJSON() ).toArray()
+            items: this.items.map(I => I.toJSON()).toArray(),
+            lists: this.todoLists.map(L => L.toJSON()).toArray()
         };
         // clients.forEach( c => c.unregisterAllMappings() );
         this.sendToClients(clients, msg);
@@ -142,48 +149,61 @@ export class User {
     private updateTodoList(L: ListID | TodoList, nextTdl: TodoList) {
         const tdl: TodoList = typeof L === "string" ? this.getList(L) : L;
         this.saveState();
-        this.items = List(this.items.filterNot(item => tdl.contains(item) )); // Remove items from tdl
+        this.items = List(this.items.filterNot(item => tdl.contains(item))); // Remove items from tdl
         if (nextTdl) {
-            this.todoLists = List(this.todoLists.map(L => L === tdl ? nextTdl : L) );
-            this.items = this.items.push( ...nextTdl.getItems().toArray() ); // Add items from newTdl
+            this.todoLists = List(this.todoLists.map(L => L === tdl ? nextTdl : L));
+            this.items = this.items.push(...nextTdl.getItems().toArray()); // Add items from newTdl
         } else {
-            this.todoLists = List(this.todoLists.filterNot(L => L === tdl) );
+            this.todoLists = List(this.todoLists.filterNot(L => L === tdl));
+        }
+        // Update list for every users
+        const listUsers: User[] = [ ...users.values() ];
+        const user = listUsers.find( U => U.todoLists.indexOf(tdl) >= 0 );
+        if (user) {
+            user.updateTodoList(tdl, nextTdl);
+            user.sendStateToClients();
         }
     }
     private SERVER_CREATE_NEW_LIST(client: Client, msg: SERVER_CREATE_NEW_LIST) {
         this.saveState();
         const tdl = new TodoList(msg.name, List<Item>(), getNextIdList(), 0, msg.data);
-        this.todoLists = this.todoLists.push( tdl );
+        this.todoLists = this.todoLists.push(tdl);
         if (client) {
             client.registerMapping(msg.clientListId, tdl.getId());
         }
         this.sendStateToClients();
+        users.forEach((user) => {
+            if (user.passport.id !== this.passport.id) {
+                user.todoLists = user.todoLists.push(tdl);
+                user.sendStateToClients();
+            }
+        });
     }
 
     private SERVER_UPDATE_LIST_DATA(client: Client, msg: SERVER_UPDATE_LIST_DATA) {
-        const tdl: TodoList = this.getList( client.getId(msg.ListID) );
+        const tdl: TodoList = this.getList(client.getId(msg.ListID));
         if (tdl) {
             this.saveState();
-            this.updateTodoList(tdl.getId(), tdl.setData( Object.assign({}, tdl.getData(), msg.data) ));
+            this.updateTodoList(tdl.getId(), tdl.setData(Object.assign({}, tdl.getData(), msg.data)));
             this.sendStateToClients();
         }
     }
 
     private TODOLISTS_NEW_STATE(client: Client, msg: TODOLISTS_NEW_STATE) {
-        const items: Item[] = msg.items.map( (itemJSON: ItemJSON) => {
+        const items: Item[] = msg.items.map((itemJSON: ItemJSON) => {
             const serverItemId = client.getId(itemJSON.id);
-            const item = this.items.find( item => item.hasId(serverItemId) );
+            const item = this.items.find(item => item.hasId(serverItemId));
             if (item) { // Update item
-                return item.setStateFromJSON( itemJSON );
+                return item.setStateFromJSON(itemJSON);
             } else { // Create new one
                 const newItem = new Item(itemJSON.label, itemJSON.checked, Date.now(), getNextIdItem(), 0, itemJSON.data);
                 client.registerMapping(itemJSON.id, newItem.getId());
                 return newItem;
             }
         });
-        const lists: TodoList[] = msg.lists.map( listJSON => {
+        const lists: TodoList[] = msg.lists.map(listJSON => {
             const clientListId = client.getId(listJSON.id);
-            const list = this.todoLists.find( L => L.hasId(clientListId) );
+            const list = this.todoLists.find(L => L.hasId(clientListId));
             console.log(listJSON.id, "items:", listJSON.items);
             const itemsList = listJSON.items.map(id => client.getId(id)).map(
                 idItem => items.find(item => item.hasId(idItem))
@@ -210,8 +230,8 @@ export class User {
     }
 
     private SERVER_UPDATE_LIST_NAME(client: Client, msg: SERVER_UPDATE_LIST_NAME) {
-        const tdl: TodoList = this.getList( client.getId(msg.ListID) );
-        const newTdl = tdl.setName( msg.name );
+        const tdl: TodoList = this.getList(client.getId(msg.ListID));
+        const newTdl = tdl.setName(msg.name);
         this.updateTodoList(tdl, newTdl);
         this.sendStateToClients();
     }
@@ -220,7 +240,7 @@ export class User {
         const ListID: ListID = client.getId(msg.ListID);
         const tdl: TodoList = this.getList(ListID);
         const item = new Item(msg.label, msg.checked, Date.now(), getNextIdItem(), 0, msg.data);
-        const newTdl = tdl.push( item );
+        const newTdl = tdl.push(item);
         client.registerMapping(msg.clientItemId, item.getId());
         this.updateTodoList(tdl, newTdl);
         this.sendStateToClients();
@@ -232,7 +252,7 @@ export class User {
         const tdl: TodoList = this.getList(ListID);
         if (tdl && tdl.contains(ItemID)) {
             this.saveState();
-            this.updateTodoList(tdl.getId(), tdl.setItemData(ItemID, Object.assign(tdl.getItemData(ItemID), msg.data) ));
+            this.updateTodoList(tdl.getId(), tdl.setItemData(ItemID, Object.assign(tdl.getItemData(ItemID), msg.data)));
             this.sendStateToClients();
         }
     }
@@ -242,7 +262,7 @@ export class User {
         const ItemID: ItemID = client.getId(msg.ItemID);
         const tdl: TodoList = this.getList(ListID);
         if (tdl.findItem(item => item.hasId(ItemID))) {
-            const newTdl = tdl.delete( ItemID );
+            const newTdl = tdl.delete(ItemID);
             this.updateTodoList(tdl, newTdl);
             this.sendStateToClients();
         }
