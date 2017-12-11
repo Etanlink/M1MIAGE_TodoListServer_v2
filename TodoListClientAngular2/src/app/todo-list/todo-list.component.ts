@@ -89,7 +89,6 @@ export class TodoListComponent implements OnInit {
   }
 
   setColor(color: string) {
-    console.log("setColor", color);
     this.todoListService.SERVER_UPDATE_LIST_DATA(
       this.list.id,
       Object.assign({}, this.list.data, {color})

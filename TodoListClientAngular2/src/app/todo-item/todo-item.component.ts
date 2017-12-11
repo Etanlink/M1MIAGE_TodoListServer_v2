@@ -145,7 +145,6 @@ export class TodoItemComponent implements OnInit, OnChanges {
 
   showDetails() {
     this.showingDetails = ! this.showingDetails;
-    console.log("details" + this.showingDetails);
   }
 
   changeList(listDest: ListID) {
