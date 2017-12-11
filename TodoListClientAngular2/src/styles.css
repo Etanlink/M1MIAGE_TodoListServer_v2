@@ -10,7 +10,7 @@ body {
 /* Draggable*/
 
 .drag-border {
-  border: purple dashed 2px !important;
+  border: #616161 dotted 2px !important;
 }
 
 .drag-handle {
