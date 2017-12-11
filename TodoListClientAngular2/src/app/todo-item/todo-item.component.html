@@ -13,8 +13,8 @@
 
     <div class="icons">
       <!-- icone pour afficher les détails dans un item -->
-      <i *ngIf="showingDetails" (click)="showDetails()" class="fa fa-angle-down" aria-hidden="true"></i>
-      <i *ngIf="!showingDetails" (click)="showDetails()" class="fa fa-angle-up" aria-hidden="true"></i>
+      <i *ngIf="isShowingDetails()" (click)="showDetails()" class="fa fa-angle-down" aria-hidden="true"></i>
+      <i *ngIf="!isShowingDetails()" (click)="showDetails()" class="fa fa-angle-up" aria-hidden="true"></i>
       <!-- icone pour supprimer un item -->
       <i (click)="delete()" class="fa fa-times" aria-hidden="true"></i>
     </div>
