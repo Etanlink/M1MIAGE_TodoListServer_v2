@@ -21,10 +21,19 @@ h3 {
 }
 .icons > i {
   margin-right: 5px;
+  padding: 3px;
 }
 .icons > i:hover {
   cursor: pointer;
   color: #77A1FF;
+}
+.icons > i.dupListe:hover {
+  cursor: pointer;
+  color: #CF7DFF;
+}
+.icons > i.supprListe:hover {
+  cursor: pointer;
+  color: #C01607;
 }
 .items {
   border: solid 2px transparent;

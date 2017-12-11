@@ -13,12 +13,19 @@ section.item {
   float: right;
 }
 .icons > i {
-  margin-right: 5px;
+  margin-right: 3px;
+  padding: 3px;
 }
 .icons > i:hover {
    cursor: pointer;
    color: #77A1FF;
  }
+
+.icons > i.supprItem:hover {
+  cursor: pointer;
+  color: #C01607;
+}
+
 .item {
   color: #444;
 }
