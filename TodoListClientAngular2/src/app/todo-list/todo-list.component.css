@@ -67,4 +67,5 @@ input.inputItem {
 .done {
   border-top: solid thin #444;
   padding-top: 5px;
+  margin-top: 5px;
 }

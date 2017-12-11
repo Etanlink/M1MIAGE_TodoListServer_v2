@@ -1,6 +1,6 @@
 section.item {
   border: solid thin #444;
-  margin: 0 0 5px 0;
+  margin: 5px 0 0 0;
   padding: 5px;
   -webkit-transition: ease all 0.3s;
   -moz-transition: ease all 0.3s;
