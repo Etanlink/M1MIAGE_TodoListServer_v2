@@ -22,7 +22,8 @@
   </div>
 
   <div class="descr" *ngIf="isShowingDescription()">
-    <div *ngIf="!isEditingDescription()" (dblclick)="editDescription(true)" class="is-small">Description : {{getDescription()}}</div>
+    <div *ngIf="!isEditingDescription()" (dblclick)="editDescription(true)" class="is-small">Description :<br/>
+      {{getDescription()}}</div>
     <form *ngIf="isEditingDescription()" (submit)="setDescription(newDesc.value)">
       <label>Description</label>
       <input #newDesc type="text" placeholder="Description" value={{getDescription()}}/>
