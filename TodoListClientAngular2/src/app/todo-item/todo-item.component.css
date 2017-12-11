@@ -48,3 +48,9 @@ div.date {
   border: solid thin #444;
   padding: 5px;
 }
+form {
+  display: inline-block;
+}
+textarea {
+  min-width: 200px;
+}
