@@ -37,6 +37,7 @@
 
       <div droppable (onDrop)="dragItem($event)" class='itemsContainer'>
         <div class="notDone">
+          Tâche(s) en cours
           <app-todo-item id="itemNotDone"
                          *ngFor="let item of filterNotDoneItems()"
                          [clock]="item.clock"
@@ -46,6 +47,7 @@
           </app-todo-item>
         </div>
         <div class="done">
+          Tâche(s) réalisées
           <app-todo-item id="itemDone"
                          *ngFor="let item of filterDoneItems()"
                          [clock]="item.clock"
