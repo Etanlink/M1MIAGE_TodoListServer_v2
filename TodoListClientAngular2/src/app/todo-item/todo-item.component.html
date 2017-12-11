@@ -4,9 +4,9 @@
 
     <input #isChecked type="checkbox" [ngModel]="item.checked" (ngModelChange)="check(isChecked.checked)" />
 
-    <label class="subtitle is-5" *ngIf="!isEditingLabel()" (dblclick)="editLabel(true)">
+    <p class="label" *ngIf="!isEditingLabel()" (dblclick)="editLabel(true)">
       {{item.label}}&nbsp;&nbsp;
-    </label>
+    </p>
     <form *ngIf="isEditingLabel()" (submit)="setLabel(newLabel.value)">
       <input #newLabel type="text" [value]="item.label"/>
     </form>

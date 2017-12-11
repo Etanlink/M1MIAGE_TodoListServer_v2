@@ -15,6 +15,10 @@ section.item {
 .icons > i {
   margin-right: 5px;
 }
+.icons > i:hover {
+   cursor: pointer;
+   color: #77A1FF;
+ }
 .item {
   color: #444;
 }
@@ -26,4 +30,12 @@ section.item {
   -webkit-transform: scale(1.05);
   -ms-transform: scale(1.05);
   transform: scale(1.05);
+}
+p.label {
+  display: inline-block;
+  max-width: 200px;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  margin: 0;
 }
