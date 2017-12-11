@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import {TodoListWithItems, TodoListJSON, TodoListService, ItemJSON} from "../todo-list.service";
-import {List} from "immutable";
+import { TodoListWithItems, TodoListJSON, TodoListService, ItemJSON } from "../todo-list.service";
+import { List } from "immutable";
 
 @Component({
   selector: 'app-lists',

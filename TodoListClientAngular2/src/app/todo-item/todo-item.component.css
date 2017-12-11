@@ -9,19 +9,22 @@ section.item {
   transition: ease all 0.3s;
   text-align: left;
 }
+
 .icons {
   float: right;
 }
-.icons > i {
+
+.icons>i {
   margin-right: 3px;
   padding: 3px;
 }
-.icons > i:hover {
-   cursor: pointer;
-   color: #77A1FF;
- }
 
-.icons > i.supprItem:hover {
+.icons>i:hover {
+  cursor: pointer;
+  color: #77A1FF;
+}
+
+.icons>i.supprItem:hover {
   cursor: pointer;
   color: #C01607;
 }
@@ -29,6 +32,7 @@ section.item {
 .item {
   color: #444;
 }
+
 .detailsItem {
   margin-top: 5px;
 }
@@ -38,6 +42,7 @@ section.item {
   -ms-transform: scale(1.05);
   transform: scale(1.05);
 }
+
 p.label {
   display: inline-block;
   max-width: 157px;
@@ -46,18 +51,22 @@ p.label {
   overflow: hidden;
   margin: 0;
 }
+
 div.description {
   border: solid thin #444;
   padding: 5px;
   margin-bottom: 5px;
 }
+
 div.date {
   border: solid thin #444;
   padding: 5px;
 }
+
 form {
   display: inline-block;
 }
+
 textarea {
   min-width: 200px;
   max-width: 200px;

@@ -1,6 +1,6 @@
-import {ChangeDetectionStrategy, Component, Input, OnChanges, OnInit, SimpleChanges} from '@angular/core';
-import {TodoListWithItems,ListID, ItemJSON, TodoListService} from "../todo-list.service";
-import {DragItem,ItemID} from "../../data/protocol";
+import { ChangeDetectionStrategy, Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
+import { TodoListWithItems, ListID, ItemJSON, TodoListService } from "../todo-list.service";
+import { DragItem, ItemID } from "../../data/protocol";
 
 @Component({
   selector: 'app-todo-item',
@@ -21,7 +21,7 @@ export class TodoItemComponent implements OnInit, OnChanges {
 
   public bgColor = "hsl(348, 100%, 61%)";
 
-  constructor(private todoListService: TodoListService) {}
+  constructor(private todoListService: TodoListService) { }
 
   ngOnInit() {
     if (this.item.checked) {
@@ -70,8 +70,8 @@ export class TodoItemComponent implements OnInit, OnChanges {
     this.editingDate = edit;
   }
 
-  getDescription(){
-    if(this.item.data.description == null) {
+  getDescription() {
+    if (this.item.data.description == null) {
       return "Aucune description";
     }
     else {
@@ -80,13 +80,13 @@ export class TodoItemComponent implements OnInit, OnChanges {
   }
   setDate(date: number) {
     this.todoListService.SERVER_UPDATE_ITEM_DATA(this.listId, this.item.id,
-      {date: date, description: this.item.data.description});
+      { date: date, description: this.item.data.description });
     this.editDate(false);
   }
 
   setDescription(description: string) {
     this.todoListService.SERVER_UPDATE_ITEM_DATA(this.listId, this.item.id,
-      {date: this.item.data.date, description: description});
+      { date: this.item.data.date, description: description });
     this.editDescription(false);
   }
 
@@ -144,7 +144,7 @@ export class TodoItemComponent implements OnInit, OnChanges {
   }
 
   showDetails() {
-    this.showingDetails = ! this.showingDetails;
+    this.showingDetails = !this.showingDetails;
   }
 
   changeList(listDest: ListID) {
@@ -155,8 +155,8 @@ export class TodoItemComponent implements OnInit, OnChanges {
   /* Drag item for drag&drop */
   getDragItem(): DragItem {
     return {
-      item : this.item,
-      listId : this.listId
+      item: this.item,
+      listId: this.listId
     };
   }
 

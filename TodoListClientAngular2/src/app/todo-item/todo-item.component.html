@@ -1,4 +1,4 @@
-<section class="item" draggable [dragData]="getDragItem()"  [style.backgroundColor]="colorIfChecked()">
+<section class="item" draggable [dragData]="getDragItem()" [style.backgroundColor]="colorIfChecked()">
 
   <section (onDrop)="ordonnate($event,item.id)">
 
@@ -8,7 +8,7 @@
       {{item.label}}
     </p>
     <form *ngIf="isEditingLabel()" (submit)="setLabel(newLabel.value)">
-      <input #newLabel type="text" [value]="item.label"/>
+      <input #newLabel type="text" [value]="item.label" />
     </form>
 
     <div class="icons">
@@ -26,7 +26,9 @@
         <form *ngIf="isEditingDescription()" (submit)="setDescription(newDesc.value)">
           <label>Description</label>
           <textarea #newDesc value={{getDescription()}}></textarea>
-          <button type="submit"><i class="fa fa-check-circle-o" aria-hidden="true"></i></button>
+          <button type="submit">
+            <i class="fa fa-check-circle-o" aria-hidden="true"></i>
+          </button>
         </form>
       </div>
 
@@ -36,11 +38,12 @@
         <form *ngIf="isEditingDate()" (submit)="setDate(newDate.value)">
           <label>Deadline</label>
           <input #newDate type="datetime-local" value={{getTheDateString()}}/>
-          <button type="submit"><i class="fa fa-check-circle-o" aria-hidden="true"></i></button>
+          <button type="submit">
+            <i class="fa fa-check-circle-o" aria-hidden="true"></i>
+          </button>
         </form>
       </div>
 
     </div>
   </section>
 </section>
-
