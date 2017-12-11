@@ -20,21 +20,25 @@
     </div>
 
     <div class="detailsItem" *ngIf="isShowingDetails()">
-      <div *ngIf="!isEditingDescription()" (dblclick)="editDescription(true)" class="is-small">Description : {{getDescription()}}</div>
+      <div class="description">
+        <div *ngIf="!isEditingDescription()" (dblclick)="editDescription(true)" class="is-small">Description : {{getDescription()}}</div>
 
-      <form *ngIf="isEditingDescription()" (submit)="setDescription(newDesc.value)">
-        <label>Description</label>
-        <input #newDesc type="text" value={{getDescription()}}/>
-        <button type="submit"><i class="fa fa-check-circle-o" aria-hidden="true"></i></button>
-      </form>
+        <form *ngIf="isEditingDescription()" (submit)="setDescription(newDesc.value)">
+          <label>Description</label>
+          <input #newDesc type="text" value={{getDescription()}}/>
+          <button type="submit"><i class="fa fa-check-circle-o" aria-hidden="true"></i></button>
+        </form>
+      </div>
 
-      <div *ngIf="!isEditingDate()" (dblclick)="editDate(true)" class="is-small">Deadline : {{getTheDate()}}</div>
+      <div class="date">
+        <div *ngIf="!isEditingDate()" (dblclick)="editDate(true)" class="is-small">Deadline : {{getTheDate()}}</div>
 
-      <form *ngIf="isEditingDate()" (submit)="setDate(newDate.value)">
-        <label>Deadline</label>
-        <input #newDate type="datetime-local" value={{getTheDateString()}}/>
-        <button type="submit"><i class="fa fa-check-circle-o" aria-hidden="true"></i></button>
-      </form>
+        <form *ngIf="isEditingDate()" (submit)="setDate(newDate.value)">
+          <label>Deadline</label>
+          <input #newDate type="datetime-local" value={{getTheDateString()}}/>
+          <button type="submit"><i class="fa fa-check-circle-o" aria-hidden="true"></i></button>
+        </form>
+      </div>
 
     </div>
   </section>

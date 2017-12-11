@@ -39,3 +39,12 @@ p.label {
   overflow: hidden;
   margin: 0;
 }
+div.description {
+  border: solid thin #444;
+  padding: 5px;
+  margin-bottom: 5px;
+}
+div.date {
+  border: solid thin #444;
+  padding: 5px;
+}
