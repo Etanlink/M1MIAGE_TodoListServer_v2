@@ -27,7 +27,7 @@ $ npm run prod
 | As Pauline, I want to rename a task list          |                                   |       Paul        |    [x]    |
 | As Pauline, I want to add a description to a list |                                   |       Paul        |    [x]    |
 | As Pauline, I want to add a description to a task |                                   |      Etienne      |    [x]    |
-| As Pauline, I want to check an item and see it    |                                   |                   |    []    |
+| As Pauline, I want to check an item and see it    |                                   | Amandine/Anthony  |    [x]    |
 | As Pauline, I want to order lists between them    |                                   |                   |    []    |
 | As Pauline, I want to order tasks between them    |                                   |                   |    []    |
 | As Pauline, I want to duplicate a task list       |                                   |      Etienne      |    [x]    |
@@ -36,5 +36,5 @@ $ npm run prod
 
 | Others functionalities                            | Acceptance criteria               | Binôme            | Done      |
 | -----------------------------------------         | --------------------------------- | ----------------- | --------- |
-| As a client, I want to use a beautiful app (HTML/CSS) |                               | Anthony/Amandine  |    []     |
+| As a client, I want to use a beautiful app (HTML/CSS) |                               |     Tous\{Paul}   |    [x]     |
 | As a user, I want to use a responsive app         |                                   |      Anthony      |    [x]     |

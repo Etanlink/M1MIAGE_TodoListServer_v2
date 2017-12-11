@@ -5,7 +5,7 @@
     <input #isChecked type="checkbox" [ngModel]="item.checked" (ngModelChange)="check(isChecked.checked)" />
 
     <p class="label" *ngIf="!isEditingLabel()" (dblclick)="editLabel(true)">
-      {{item.label}}&nbsp;&nbsp;
+      {{item.label}}
     </p>
     <form *ngIf="isEditingLabel()" (submit)="setLabel(newLabel.value)">
       <input #newLabel type="text" [value]="item.label"/>
@@ -13,10 +13,10 @@
 
     <div class="icons">
       <!-- icone pour afficher les détails dans un item -->
-      <i *ngIf="!isShowingDetails()" (click)="showDetails()" class="fa fa-angle-down" aria-hidden="true"></i>
-      <i *ngIf="isShowingDetails()" (click)="showDetails()" class="fa fa-angle-up" aria-hidden="true"></i>
+      <i *ngIf="!isShowingDetails()" (click)="showDetails()" class="fa fa-angle-down" aria-hidden="true" title="Détails"></i>
+      <i *ngIf="isShowingDetails()" (click)="showDetails()" class="fa fa-angle-up" aria-hidden="true" title="Masquer détails"></i>
       <!-- icone pour supprimer un item -->
-      <i (click)="delete()" class="fa fa-times" aria-hidden="true"></i>
+      <i (click)="delete()" class="fa fa-times supprItem" aria-hidden="true" title="Supprimer"></i>
     </div>
 
     <div class="detailsItem" *ngIf="isShowingDetails()">
