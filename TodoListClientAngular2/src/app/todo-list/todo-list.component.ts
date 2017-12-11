@@ -1,6 +1,6 @@
-import {ChangeDetectionStrategy, Component, Input, OnInit} from '@angular/core';
-import {TodoListWithItems, TodoListService} from "../todo-list.service";
-import {DragItem, ItemJSON, ItemID} from "../../data/protocol";
+import { ChangeDetectionStrategy, Component, Input, OnInit } from '@angular/core';
+import { TodoListWithItems, TodoListService } from "../todo-list.service";
+import { DragItem, ItemJSON, ItemID } from "../../data/protocol";
 
 @Component({
   selector: 'app-todo-list',
@@ -42,12 +42,12 @@ export class TodoListComponent implements OnInit {
   setDescription(description: string) {
     this.todoListService.SERVER_UPDATE_LIST_DATA(
       this.list.id,
-      {description: description, color: ""}
+      { description: description, color: "" }
     );
   }
 
   showDescription() {
-    this.showingDescription = ! this.showingDescription;
+    this.showingDescription = !this.showingDescription;
   }
 
   isShowingDescription(): boolean {
@@ -62,22 +62,21 @@ export class TodoListComponent implements OnInit {
     this.editingDescription = edit;
   }
 
-  getDescription(){
-    if(this.list.data.description.length == 0) {
+  getDescription() {
+    if (this.list.data.description.length === 0) {
       return "Aucune description";
-    }
-    else {
+    } else {
       return this.list.data.description;
     }
   }
 
   createItem(label: string) {
-    if (label != "") {
+    if (label !== "") {
       const id = this.todoListService.SERVER_CREATE_ITEM(
         this.list.id,
         label,
         false,
-        {date: Date.now()}
+        { date: Date.now() }
       );
     }
   }
@@ -93,7 +92,7 @@ export class TodoListComponent implements OnInit {
   setColor(color: string) {
     this.todoListService.SERVER_UPDATE_LIST_DATA(
       this.list.id,
-      Object.assign({}, this.list.data, {color})
+      Object.assign({}, this.list.data, { color })
     );
   }
 

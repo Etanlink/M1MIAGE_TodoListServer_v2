@@ -9,23 +9,27 @@ section.root {
   margin: 10px;
   background-color: #616161;
 }
+
 h3 {
   margin: 0;
-  padding:  0 0 10px 0;
+  padding: 0 0 10px 0;
   display: inline-block;
 }
+
 .icons {
   color: white;
   display: inline-block;
-  float: right;
 }
-.icons > i {
+
+.icons>i {
   margin-right: 5px;
 }
-.icons > i:hover {
+
+.icons>i:hover {
   cursor: pointer;
   color: #77A1FF;
 }
+
 .items {
   border: solid 2px transparent;
   -webkit-transition: ease all 0.2s;
@@ -34,6 +38,7 @@ h3 {
   -o-transition: ease all 0.2s;
   transition: ease all 0.2s;
 }
+
 input.inputItem {
   padding: 3px;
   margin: 5px 0 15px 0;
@@ -43,7 +48,7 @@ input.inputItem {
   background-color: rgba(255, 255, 255, 0.2);
   margin-bottom: 10px;
   padding: 5px;
-  box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
 }
 
 .itemsContainer {
@@ -53,13 +58,12 @@ input.inputItem {
   width: 50%;
   min-width: 230px;
   min-height: 50px;
-  box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
 }
 
 .itemsContainer:empty {
   display: none;
 }
-
 
 .itemsContainer:nth-child(odd) {
   background-color: rgba(0, 0, 0, 0.2);

@@ -4,7 +4,7 @@
   </h3>
 
   <form *ngIf="isEditingLabel()" (submit)="setLabel(newLabel.value)">
-    <input #newLabel type="text" [value]="list.name"/>
+    <input #newLabel type="text" [value]="list.name" />
   </form>
 
   <div class="icons disable-select">
@@ -22,12 +22,15 @@
   </div>
 
   <div class="descr" *ngIf="isShowingDescription()">
-    <div *ngIf="!isEditingDescription()" (dblclick)="editDescription(true)" class="is-small">Description :<br/>
-      {{getDescription()}}</div>
+    <div *ngIf="!isEditingDescription()" (dblclick)="editDescription(true)" class="is-small">Description :
+      <br/> {{getDescription()}}
+    </div>
     <form *ngIf="isEditingDescription()" (submit)="setDescription(newDesc.value)">
       <label>Description</label>
       <input #newDesc type="text" placeholder="Description" value={{getDescription()}}/>
-      <button type="submit"><i class="fa fa-check-circle-o" aria-hidden="true"></i></button>
+      <button type="submit">
+        <i class="fa fa-check-circle-o" aria-hidden="true"></i>
+      </button>
     </form>
   </div>
 
@@ -36,28 +39,20 @@
       <input class="inputItem" type="text" placeholder=" Nouvelle tâche" #newItemLabel/>
     </form>
 
-      <div droppable (onDrop)="dragItem($event)" class='itemsContainer'>
-        <div *ngIf="filterNotDoneItems().length != 0" class="notDone">
-          Tâche(s) en cours
-          <app-todo-item id="itemNotDone"
-                         *ngFor="let item of filterNotDoneItems()"
-                         [clock]="item.clock"
-                         [item]="item"
-                         [listId]="list.id"
-                         [lists]="lists">
-          </app-todo-item>
-        </div>
-        <div *ngIf="filterDoneItems().length != 0" class="done">
-          Tâche(s) réalisées
-          <app-todo-item id="itemDone"
-                         *ngFor="let item of filterDoneItems()"
-                         [clock]="item.clock"
-                         [item]="item"
-                         [listId]="list.id"
-                         [lists]="lists">
-          </app-todo-item>
-        </div>
+    <div droppable (onDrop)="dragItem($event)" class='itemsContainer'>
+      <div *ngIf="filterNotDoneItems().length != 0" class="notDone">
+        Tâche(s) en cours
+        <app-todo-item id="itemNotDone" *ngFor="let item of filterNotDoneItems()" [clock]="item.clock" [item]="item" [listId]="list.id"
+          [lists]="lists">
+        </app-todo-item>
       </div>
+      <div *ngIf="filterDoneItems().length != 0" class="done">
+        Tâche(s) réalisées
+        <app-todo-item id="itemDone" *ngFor="let item of filterDoneItems()" [clock]="item.clock" [item]="item" [listId]="list.id"
+          [lists]="lists">
+        </app-todo-item>
+      </div>
+    </div>
 
   </section>
 </section>
