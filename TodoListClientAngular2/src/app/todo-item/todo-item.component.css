@@ -24,7 +24,7 @@ section.item {
 }
 
 .icons>i:hover {
-  color: #77A1FF;
+  color: #000;
   -webkit-transform: scale(1.3);
   -moz-transform: scale(1.3);
   -ms-transform: scale(1.3);
