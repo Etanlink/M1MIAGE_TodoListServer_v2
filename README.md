@@ -30,7 +30,7 @@ $ npm run prod
 | As Pauline, I want to check an item and see it               | Amandine/Anthony  |    [x]    |
 | As Pauline, I want to drag&drop the tasks between the lists  |   Paul/Etienne    |    [x]    |
 | As Pauline, I want to order lists between them               |                   |    [0%]   |
-| As Pauline, I want to order tasks between them               |                   |    [70%]  |
+| As Pauline, I want to order tasks between them               |      Paul         |    [x]    |
 | As Pauline, I want to duplicate a task list                  |      Etienne      |    [x]    |
 | As Marc, I want to share lists with others users             |      Etienne      |    [x]    |
 | As Marc, I want to export a list                             |                   |    [0%]   |
