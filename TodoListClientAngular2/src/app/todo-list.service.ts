@@ -213,11 +213,14 @@ export class TodoListService {
 
 
   SERVER_CHANGE_ITEMLIST(ListSrc: ListID, ItemID: ItemID, ListDestId: ListID): string {
-    const item = this.getItem(ListSrc, ItemID);
-    const newId = this.SERVER_CREATE_ITEM(ListDestId, item.label, item.checked, item.data);
-    this.SERVER_DELETE_ITEM(ListSrc, ItemID);
-    this.SERVER_UPDATE_ITEM_DATA(ListDestId, newId, item.data);
-    return newId;
+    if (ListSrc!=ListDestId)
+    {
+      const item = this.getItem(ListSrc, ItemID);
+      const newId = this.SERVER_CREATE_ITEM(ListDestId, item.label, item.checked, item.data);
+      this.SERVER_DELETE_ITEM(ListSrc, ItemID);
+      this.SERVER_UPDATE_ITEM_DATA(ListDestId, newId, item.data);
+      return newId;
+    }
   }
 
   SERVER_DELETE_ITEM(ListID: ListID, ItemID: ItemID) {
