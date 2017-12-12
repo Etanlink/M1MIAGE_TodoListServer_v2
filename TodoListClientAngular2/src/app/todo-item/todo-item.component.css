@@ -13,19 +13,26 @@ section.item {
 .icons {
   float: right;
 }
+.icons:hover {
+  cursor: pointer;
+}
 
 .icons>i {
   margin-right: 2px;
   padding: 3px;
+  transition: ease all 0.2s;
 }
 
 .icons>i:hover {
-  cursor: pointer;
   color: #77A1FF;
+  -webkit-transform: scale(1.3);
+  -moz-transform: scale(1.3);
+  -ms-transform: scale(1.3);
+  -o-transform: scale(1.3);
+  transform: scale(1.3);
 }
 
 .icons>i.supprItem:hover {
-  cursor: pointer;
   color: #C01607;
 }
 
@@ -68,6 +75,7 @@ form {
 }
 
 textarea {
-  min-width: 200px;
-  max-width: 200px;
+  min-width: 250px;
+  max-width: 250px;
+  display: block;
 }

@@ -25,7 +25,7 @@
     </div>
     <form *ngIf="isEditingDescription()" (submit)="setDescription(newDesc.value)">
       <label>Description</label>
-      <input #newDesc type="text" placeholder="Description" value={{getDescription()}}/>
+      <textarea #newDesc value={{getDescription()}}></textarea>
       <button type="submit">
         <i class="fa fa-check-circle-o" aria-hidden="true"></i>
       </button>
