@@ -1,7 +1,5 @@
 <section class="item" draggable [dragData]="getDragItem()" [style.backgroundColor]="colorIfChecked()">
 
-  <section (onDrop)="ordonnate($event,item.id)">
-
     <input #isChecked type="checkbox" [ngModel]="item.checked" (ngModelChange)="check(isChecked.checked)" />
 
     <p class="label" *ngIf="!isEditingLabel()" (dblclick)="editLabel(true)">
@@ -17,6 +15,8 @@
       <i *ngIf="isShowingDetails()" (click)="showDetails()" class="fa fa-angle-up" aria-hidden="true" title="Masquer détails"></i>
       <!-- icone pour supprimer un item -->
       <i (click)="delete()" class="fa fa-times supprItem" aria-hidden="true" title="Supprimer"></i>
+      <i (click)="placeUp()" class="fa fa-arrow-up" aria-hidden="true" title="PlaceUP"></i>
+      <i (click)="placeDown()" class="fa fa-arrow-down" aria-hidden="true" title="PlaceDOWN"></i>
     </div>
 
     <div class="detailsItem" *ngIf="isShowingDetails()">
@@ -45,5 +45,4 @@
       </div>
 
     </div>
-  </section>
 </section>

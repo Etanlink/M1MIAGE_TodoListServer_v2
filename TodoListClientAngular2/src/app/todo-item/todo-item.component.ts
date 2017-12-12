@@ -160,16 +160,27 @@ export class TodoItemComponent implements OnInit, OnChanges {
     };
   }
 
-  placeUp(itemSource: ItemID) {
-    if (itemSource !== this.item.id) {
-      this.todoListService.CHANGE_ITEM_ORDER(this.listId, itemSource, this.item.id);
+  placeUp() {
+      const liste = this.todoListService.getList(this.listId);
+      const itemIndex = liste.items.findIndex((e)=>e.id==this.item.id);
+      if (itemIndex-1>=0)
+      {
+        const upItemId = liste.items.slice(itemIndex-1,itemIndex).pop().id;
+        this.todoListService.PLACE_ITEM_UP(this.listId,this.item.id,upItemId);
+      }
+
+  }
+
+  placeDown() {
+    const liste = this.todoListService.getList(this.listId);
+    const itemIndex = liste.items.findIndex((e)=>e.id==this.item.id);
+    if (itemIndex+1<liste.items.length)
+    {
+      const downItemId = liste.items.slice(itemIndex + 1, itemIndex + 2).pop().id;
+      this.todoListService.PLACE_ITEM_DOWN(this.listId,this.item.id,downItemId);
     }
   }
 
-  ordonnate(dragEvent, dest: ItemID) {
-    const dragItem: DragItem = dragEvent.dragData;
-    this.placeUp(dragItem.item.id);
-  }
 
   colorIfChecked(): string {
     if (this.item.checked) {

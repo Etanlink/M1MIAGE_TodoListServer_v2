@@ -184,7 +184,7 @@ export class TodoListService {
     return id;
   }
 
-  CHANGE_ITEM_ORDER(List : ListID, ItemSource : ItemID, ItemDest : ItemID)
+  PLACE_ITEM_UP(List : ListID, ItemSource : ItemID, ItemDest : ItemID)
   {
     let liste = this.getList(List);
     const itemSourcetab = liste.items.filter(item => item.id === ItemSource);
@@ -195,9 +195,22 @@ export class TodoListService {
     firstPart.push(itemSource as ItemJSON);
     const secondPart = interTab.slice(indexDest, liste.items.length);
     liste.items = firstPart.concat(secondPart);
-    console.log(firstPart);
-    console.log(secondPart);
   }
+
+
+  PLACE_ITEM_DOWN(List : ListID, ItemSource : ItemID, ItemDest : ItemID)
+  {
+    let liste = this.getList(List);
+    const itemSourcetab = liste.items.filter(item => item.id === ItemSource);
+    const itemSource = itemSourcetab.pop();
+    const interTab = liste.items.filter(item => item.id !== ItemSource);
+    const indexDest = interTab.findIndex(item => item.id == ItemDest);
+    const firstPart = interTab.slice(0, indexDest+1);
+    firstPart.push(itemSource as ItemJSON);
+    const secondPart = interTab.slice(indexDest+1, liste.items.length);
+    liste.items = firstPart.concat(secondPart);
+  }
+
 
   SERVER_CHANGE_ITEMLIST(ListSrc: ListID, ItemID: ItemID, ListDestId: ListID): string {
     const item = this.getItem(ListSrc, ItemID);
@@ -318,7 +331,7 @@ export class TodoListService {
     return this.genId.next().value;
   }
 
-  private getList(ListID: ListID): TodoListWithItems {
+  getList(ListID: ListID): TodoListWithItems {
     return this.ListUIs.find( L => L.id === ListID );
   }
 
