@@ -1,10 +1,10 @@
 ///<reference path="../../../app/data/todoListTypes.ts"/>
-import {Injectable} from "@angular/core";
+import { Injectable } from "@angular/core";
 import 'rxjs/add/operator/toPromise';
 import {
   ItemID, ListID,
   MESSAGE_FOR_SERVER, SERVER_UPDATE_ITEM_CHECK, SERVER_UPDATE_ITEM_LABEL, SERVER_UPDATE_ITEM_DATA, DataForItem, SERVER_UPDATE_LIST_NAME,
-  MESSAGE_FOR_CLIENT, TODOLISTS_NEW_STATE,DataForList,
+  MESSAGE_FOR_CLIENT, TODOLISTS_NEW_STATE, DataForList,
   TodoListJSON, ItemJSON, TodoListWithItems, SERVER_DELETE_ITEM, SERVER_DELETE_LIST, SERVER_UPDATE_LIST_DATA
 } from "../data/protocol";
 export {
@@ -13,12 +13,12 @@ export {
   MESSAGE_FOR_CLIENT, TODOLISTS_NEW_STATE,
   TodoListJSON, ItemJSON, TodoListWithItems,
 } from "../data/protocol";
-import {Http, Response} from "@angular/http";
+import { Http, Response } from "@angular/http";
 import * as io from "socket.io-client";
-import {BehaviorSubject} from "rxjs/BehaviorSubject";
+import { BehaviorSubject } from "rxjs/BehaviorSubject";
 // import {PartialObserver} from "rxjs/Observer";
 // import {Subscription} from "rxjs/Subscription";
-import {Observable} from "rxjs/Observable";
+import { Observable } from "rxjs/Observable";
 
 // let nbUpdate = 0;
 function* generatorPrefix(prefix: string) {
@@ -34,7 +34,7 @@ export class TodoListService {
   private user;
   private ListUIs: TodoListWithItems[] = [];
   private itemsJSON: ItemJSON[] = [];
-  private genId = generatorPrefix( Date.now() + "::" );
+  private genId = generatorPrefix(Date.now() + "::");
   private connected = new BehaviorSubject<boolean>(false);
   private messagesToSendAfterReconnection: MESSAGE_FOR_SERVER[] = [];
 
@@ -42,7 +42,7 @@ export class TodoListService {
     this.sio = io({
       reconnection: true,
       reconnectionDelay: 1000,
-      reconnectionDelayMax : 5000,
+      reconnectionDelayMax: 5000,
       reconnectionAttempts: Infinity
     });
     this.sio.connect();
@@ -79,13 +79,13 @@ export class TodoListService {
     const op: TODOLISTS_NEW_STATE = {
       type: "TODOLISTS_NEW_STATE",
       lists: this.ListUIs.map(
-        L => Object.assign({}, L, {items: L.items.map( I  => I.id)})
+        L => Object.assign({}, L, { items: L.items.map(I => I.id) })
       ),
       items: this.ListUIs.reduce(
         (items: ItemJSON[], list: TodoListWithItems) => {
           items.push(...list.items);
           return items;
-        }, [] )
+        }, [])
     };
     console.log("Updating state from local", op);
     this.emit(op);
@@ -98,7 +98,7 @@ export class TodoListService {
   /*****************************************************************************************************************************************
    * Operations on lists *******************************************************************************************************************
    ****************************************************************************************************************************************/
-  SERVER_CREATE_NEW_LIST(name: string, data: DataForList = {description: "", color: ""}): string {
+  SERVER_CREATE_NEW_LIST(name: string, data: DataForList = { description: "", color: "" }): string {
     const id = this.getLocalListId();
     this.ListUIs.push({
       name: name,
@@ -107,23 +107,23 @@ export class TodoListService {
       clock: -1,
       data: data
     });
-    this.emit( {
+    this.emit({
       type: "SERVER_CREATE_NEW_LIST",
       name: name,
       data: data,
       clientListId: id
-    } );
+    });
     return id;
   }
 
   SERVER_DUPLICATE_LIST(listID: ListID) {
     const duplicateListId = this.SERVER_CREATE_NEW_LIST(this.getList(listID).name, this.getList(listID).data);
-    this.getList(listID).items.forEach( i =>
+    this.getList(listID).items.forEach(i =>
       this.SERVER_CREATE_ITEM(duplicateListId, i.label, i.checked, i.data)
     );
   }
 
-  SERVER_UPDATE_LIST_NAME(Listid: ListID, name: string){
+  SERVER_UPDATE_LIST_NAME(Listid: ListID, name: string) {
     const op: SERVER_UPDATE_LIST_NAME = {
       type: "SERVER_UPDATE_LIST_NAME",
       ListID: Listid,
@@ -139,7 +139,7 @@ export class TodoListService {
       ListID: ListID
     };
     this.emit(op);
-    this.ListUIs = this.ListUIs.filter( L => L.id !== ListID );
+    this.ListUIs = this.ListUIs.filter(L => L.id !== ListID);
   }
 
   SERVER_UPDATE_LIST_DATA(ListID: ListID, data: DataForList) {
@@ -149,7 +149,7 @@ export class TodoListService {
       data: data
     };
     this.emit(op);
-    this.ListUIs = this.ListUIs.map( L => {
+    this.ListUIs = this.ListUIs.map(L => {
       if (L.id === ListID) {
         const newL = Object.assign({}, L);
         newL.data = Object.assign({}, newL.data, data);
@@ -157,11 +157,10 @@ export class TodoListService {
       } else {
         return L;
       }
-    } );
+    });
   }
 
-  PLACE_LIST_UP(listSrc : ListID, listDest : ItemID) : TodoListWithItems[]
-  {
+  PLACE_LIST_UP(listSrc: ListID, listDest: ItemID): TodoListWithItems[] {
     let listes = this.ListUIs;
     const interTab = listes.filter(list => list.id !== listSrc);
     const indexDest = interTab.findIndex(list => list.id == listDest);
@@ -176,15 +175,14 @@ export class TodoListService {
     return listes;
   }
 
-  PLACE_LIST_DOWN( listSrc : ListID, listDest : ItemID): TodoListWithItems[]
-  {
+  PLACE_LIST_DOWN(listSrc: ListID, listDest: ItemID): TodoListWithItems[] {
     let listes = this.ListUIs;
     const interTab = listes.filter(list => list.id !== listSrc);
     const indexDest = interTab.findIndex(list => list.id == listDest);
-    const firstPart = interTab.slice(0, indexDest+1);
+    const firstPart = interTab.slice(0, indexDest + 1);
     const list = this.getList(listSrc);
     firstPart.push(list);
-    const secondPart = interTab.slice(indexDest+1, listes.length);
+    const secondPart = interTab.slice(indexDest + 1, listes.length);
     listes = firstPart.concat(secondPart);
     console.log(listes);
     this.ListUIs = listes;
@@ -205,7 +203,7 @@ export class TodoListService {
       data: data,
       clientItemId: id
     });
-    this.ListUIs.find( L => L.id === ListID ).items.push({
+    this.ListUIs.find(L => L.id === ListID).items.push({
       label: label,
       id: id,
       date: Date.now(),
@@ -216,8 +214,7 @@ export class TodoListService {
     return id;
   }
 
-  PLACE_ITEM_UP(List : ListID, ItemSource : ItemID, ItemDest : ItemID)
-  {
+  PLACE_ITEM_UP(List: ListID, ItemSource: ItemID, ItemDest: ItemID) {
     let liste = this.getList(List);
     const itemSourcetab = liste.items.filter(item => item.id === ItemSource);
     const itemSource = itemSourcetab.pop();
@@ -231,24 +228,22 @@ export class TodoListService {
   }
 
 
-  PLACE_ITEM_DOWN(List : ListID, ItemSource : ItemID, ItemDest : ItemID)
-  {
+  PLACE_ITEM_DOWN(List: ListID, ItemSource: ItemID, ItemDest: ItemID) {
     let liste = this.getList(List);
     const itemSourcetab = liste.items.filter(item => item.id === ItemSource);
     const itemSource = itemSourcetab.pop();
     const interTab = liste.items.filter(item => item.id !== ItemSource);
     const indexDest = interTab.findIndex(item => item.id == ItemDest);
-    const firstPart = interTab.slice(0, indexDest+1);
+    const firstPart = interTab.slice(0, indexDest + 1);
     firstPart.push(itemSource as ItemJSON);
-    const secondPart = interTab.slice(indexDest+1, liste.items.length);
+    const secondPart = interTab.slice(indexDest + 1, liste.items.length);
     liste.items = firstPart.concat(secondPart);
     this.sendState();
   }
 
 
   SERVER_CHANGE_ITEMLIST(ListSrc: ListID, ItemID: ItemID, ListDestId: ListID): string {
-    if (ListSrc!=ListDestId)
-    {
+    if (ListSrc != ListDestId) {
       const item = this.getItem(ListSrc, ItemID);
       const newId = this.SERVER_CREATE_ITEM(ListDestId, item.label, item.checked, item.data);
       this.SERVER_DELETE_ITEM(ListSrc, ItemID);
@@ -265,8 +260,8 @@ export class TodoListService {
     };
     this.emit(op);
     const list = this.getList(ListID);
-    list.items = list.items.filter( I => I.id !== ItemID );
-    this.itemsJSON = this.itemsJSON.filter( I => I.id !== ItemID );
+    list.items = list.items.filter(I => I.id !== ItemID);
+    this.itemsJSON = this.itemsJSON.filter(I => I.id !== ItemID);
   }
 
   SERVER_UPDATE_ITEM_DATA(ListID: ListID, ItemID: ItemID, data: DataForItem) {
@@ -278,9 +273,9 @@ export class TodoListService {
     };
     this.emit(op);
     const prevData = this.getItem(ListID, ItemID).data;
-    const newData  = Object.assign(prevData, data);
+    const newData = Object.assign(prevData, data);
     console.log("SERVER_UPDATE_ITEM_DATA", ListID, ItemID, data, "\n", "\t", prevData, "=>", newData);
-    this.localUpdateItem(ListID, ItemID, {data: newData});
+    this.localUpdateItem(ListID, ItemID, { data: newData });
   }
 
   SERVER_UPDATE_ITEM_CHECK(ListID: ListID, ItemID: ItemID, checked: boolean) {
@@ -291,7 +286,7 @@ export class TodoListService {
       check: checked
     };
     this.emit(op);
-    this.localUpdateItem(ListID, ItemID, {checked: checked});
+    this.localUpdateItem(ListID, ItemID, { checked: checked });
   }
 
   SERVER_UPDATE_ITEM_LABEL(ListID: ListID, ItemID: ItemID, label: string) {
@@ -302,7 +297,7 @@ export class TodoListService {
       label: label
     };
     this.emit(op);
-    this.localUpdateItem(ListID, ItemID, {label: label});
+    this.localUpdateItem(ListID, ItemID, { label: label });
   }
 
   /*****************************************************************************************************************************************
@@ -311,8 +306,8 @@ export class TodoListService {
   private TODOLISTS_NEW_STATE(msg: TODOLISTS_NEW_STATE): void {
     // Update ItemUIs
     console.log("TODOLISTS_NEW_STATE:", msg);
-    this.itemsJSON = msg.items.map( itemJSON => {
-      const itemUI = this.itemsJSON.find( I => I.id === itemJSON.id ) || itemJSON;
+    this.itemsJSON = msg.items.map(itemJSON => {
+      const itemUI = this.itemsJSON.find(I => I.id === itemJSON.id) || itemJSON;
       if (itemUI.clock < itemJSON.clock) {
         Object.assign(itemUI, itemJSON);
         // itemUI.label = `${itemUI.label} (update ${nbUpdate++})`;
@@ -320,20 +315,20 @@ export class TodoListService {
       return itemUI;
     });
     // Update listsUI
-    this.ListUIs = msg.lists.map( listJSON => {
-      const listUI = this.ListUIs.find( L => L.id === listJSON.id ) || {
+    this.ListUIs = msg.lists.map(listJSON => {
+      const listUI = this.ListUIs.find(L => L.id === listJSON.id) || {
         clock: -1,
         name: null,
         items: null,
         id: listJSON.id,
-        data: {description:"",color:""}
+        data: { description: "", color: "" }
       };
       if (listUI.clock < listJSON.clock) {
         Object.assign(listUI, {
           name: listJSON.name, // `${listJSON.name} (update ${nbUpdate++})`,
           clock: listJSON.clock,
-          items: listJSON.items.map( itemId => {
-            return this.itemsJSON.find( I => I.id === itemId );
+          items: listJSON.items.map(itemId => {
+            return this.itemsJSON.find(I => I.id === itemId);
           }),
           data: listJSON.data
         });
@@ -360,7 +355,7 @@ export class TodoListService {
     if (this.connected.getValue()) {
       return this.sio.emit("operation", msg, cb);
     } else {
-      this.messagesToSendAfterReconnection.push( msg );
+      this.messagesToSendAfterReconnection.push(msg);
     }
   }
 
@@ -369,15 +364,15 @@ export class TodoListService {
   }
 
   getList(ListID: ListID): TodoListWithItems {
-    return this.ListUIs.find( L => L.id === ListID );
+    return this.ListUIs.find(L => L.id === ListID);
   }
 
   private getItem(ListID: ListID, ItemID: ItemID): ItemJSON {
-    return this.getList(ListID).items.find( I => I.id === ItemID );
+    return this.getList(ListID).items.find(I => I.id === ItemID);
   }
 
-  private localUpdateItem(ListID: ListID, ItemID: ItemID, update: {label?: string, checked?: boolean, data?: Object}) {
+  private localUpdateItem(ListID: ListID, ItemID: ItemID, update: { label?: string, checked?: boolean, data?: Object }) {
     const list = this.getList(ListID);
-    list.items = list.items.map( I => I.id !== ItemID ? I : Object.assign(I, update) );
+    list.items = list.items.map(I => I.id !== ItemID ? I : Object.assign(I, update));
   }
 }

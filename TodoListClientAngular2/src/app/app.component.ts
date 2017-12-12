@@ -1,9 +1,9 @@
-import {Component, Input, OnInit} from '@angular/core';
-import {TodoListService} from "./todo-list.service";
-import {Router} from "@angular/router";
+import { Component, Input, OnInit } from '@angular/core';
+import { TodoListService } from "./todo-list.service";
+import { Router } from "@angular/router";
 import "rxjs/add/operator/filter";
-import {PassportUser} from "../data/protocol";
-import {BehaviorSubject} from "rxjs/BehaviorSubject";
+import { PassportUser } from "../data/protocol";
+import { BehaviorSubject } from "rxjs/BehaviorSubject";
 
 @Component({
   selector: 'app-root',
@@ -14,7 +14,7 @@ export class AppComponent implements OnInit {
   @Input() title = 'Todo List';
 
   constructor(private tdlService: TodoListService,
-              private router: Router) {
+    private router: Router) {
   }
 
   getUser(): PassportUser {

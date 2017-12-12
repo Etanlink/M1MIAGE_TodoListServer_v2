@@ -113,21 +113,18 @@ export class TodoListComponent implements OnInit {
     return this.list.items.filter(x => x.checked == true);
   }
 
-  placeUp()
-  {
+  placeUp() {
     const index = this.todoListService.getLists().findIndex((e) => e.id == this.list.id);
-    if (index -1 >= 0) {
+    if (index - 1 >= 0) {
       const downListId = this.lists.slice(index - 1, index).pop().id;
       this.todoListService.PLACE_LIST_UP(this.list.id, downListId);
     }
   }
 
-  placeDown()
-  {
+  placeDown() {
     const index = this.todoListService.getLists().findIndex((e) => e.id == this.list.id);
-    if (index +1 < this.lists.length)
-    {
-      const downListId = this.lists.slice(index+1, index + 2).pop().id;
+    if (index + 1 < this.lists.length) {
+      const downListId = this.lists.slice(index + 1, index + 2).pop().id;
       this.todoListService.PLACE_LIST_DOWN(this.list.id, downListId);
     }
   }

@@ -73,8 +73,7 @@ export class TodoItemComponent implements OnInit, OnChanges {
   getDescription() {
     if (this.item.data.description == null) {
       return "Aucune description";
-    }
-    else {
+    } else {
       return this.item.data.description;
     }
   }
@@ -115,7 +114,7 @@ export class TodoItemComponent implements OnInit, OnChanges {
     let day = d.getDate();
     let minutes = d.getMinutes();
     let str = "";
-    str = d.getFullYear() + "-" + (d.getMonth() + 1) + "-"
+    str = d.getFullYear() + "-" + (d.getMonth() + 1) + "-";
     if (day < 10) {
       str = str + "0" + day + " " + d.getHours() + ":";
     } else {
@@ -161,23 +160,21 @@ export class TodoItemComponent implements OnInit, OnChanges {
   }
 
   placeUp() {
-      const liste = this.todoListService.getList(this.listId);
-      const itemIndex = liste.items.findIndex((e)=>e.id==this.item.id);
-      if (itemIndex-1>=0)
-      {
-        const upItemId = liste.items.slice(itemIndex-1,itemIndex).pop().id;
-        this.todoListService.PLACE_ITEM_UP(this.listId,this.item.id,upItemId);
-      }
+    const liste = this.todoListService.getList(this.listId);
+    const itemIndex = liste.items.findIndex((e) => e.id == this.item.id);
+    if (itemIndex - 1 >= 0) {
+      const upItemId = liste.items.slice(itemIndex - 1, itemIndex).pop().id;
+      this.todoListService.PLACE_ITEM_UP(this.listId, this.item.id, upItemId);
+    }
 
   }
 
   placeDown() {
     const liste = this.todoListService.getList(this.listId);
-    const itemIndex = liste.items.findIndex((e)=>e.id==this.item.id);
-    if (itemIndex+1<liste.items.length)
-    {
+    const itemIndex = liste.items.findIndex((e) => e.id == this.item.id);
+    if (itemIndex + 1 < liste.items.length) {
       const downItemId = liste.items.slice(itemIndex + 1, itemIndex + 2).pop().id;
-      this.todoListService.PLACE_ITEM_DOWN(this.listId,this.item.id,downItemId);
+      this.todoListService.PLACE_ITEM_DOWN(this.listId, this.item.id, downItemId);
     }
   }
 

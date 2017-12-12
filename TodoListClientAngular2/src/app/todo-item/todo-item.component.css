@@ -13,6 +13,7 @@ section.item {
 .icons {
   float: right;
 }
+
 .icons:hover {
   cursor: pointer;
 }

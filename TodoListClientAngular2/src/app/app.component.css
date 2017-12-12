@@ -2,24 +2,28 @@
   font-family: 'Roboto', sans-serif;
   text-align: center;
 }
+
 .navbar {
   background-color: #616161;
   padding: 20px;
   text-align: right;
   position: relative;
 }
+
 .navbar h1 {
   margin: 0;
 }
+
 .navbar-menu {
   display: inline-block;
   font-family: 'Roboto', sans-serif;
 }
+
 .navbar-brand {
   display: inline-block;
   margin-left: 20px;
 }
+
 .navbar-item img {
   border-radius: 100%;
 }
-

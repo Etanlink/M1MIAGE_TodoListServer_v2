@@ -1,48 +1,45 @@
 <section class="item" draggable [dragData]="getDragItem()" [style.backgroundColor]="colorIfChecked()">
 
-    <input #isChecked type="checkbox" [ngModel]="item.checked" (ngModelChange)="check(isChecked.checked)" />
+  <input #isChecked type="checkbox" [ngModel]="item.checked" (ngModelChange)="check(isChecked.checked)" />
 
-    <p class="label" *ngIf="!isEditingLabel()" (dblclick)="editLabel(true)">
-      {{item.label}}
-    </p>
-    <form *ngIf="isEditingLabel()" (submit)="setLabel(newLabel.value)">
-      <input #newLabel type="text" [value]="item.label" />
-    </form>
+  <p class="label" *ngIf="!isEditingLabel()" (dblclick)="editLabel(true)">
+    {{item.label}}
+  </p>
+  <form *ngIf="isEditingLabel()" (submit)="setLabel(newLabel.value)">
+    <input #newLabel type="text" [value]="item.label" />
+  </form>
 
-    <div class="icons">
-      <!-- icone pour afficher les détails dans un item -->
-      <i *ngIf="!isShowingDetails()" (click)="showDetails()" class="fa fa-chevron-down" aria-hidden="true" title="Détails"></i><!--
-    --><i *ngIf="isShowingDetails()" (click)="showDetails()" class="fa fa-chevron-up" aria-hidden="true" title="Masquer détails"></i><!--
-    --><!-- icone pour supprimer un item --><!--
-    --><i (click)="placeUp()" class="fa fa-arrow-up" aria-hidden="true" title="Déplacer en haut"></i><!--
-    --><i (click)="placeDown()" class="fa fa-arrow-down" aria-hidden="true" title="Déplacer en bas"></i><!--
-    --><i (click)="delete()" class="fa fa-times supprItem" aria-hidden="true" title="Supprimer"></i>
+  <div class="icons">
+    <i *ngIf="!isShowingDetails()" (click)="showDetails()" class="fa fa-chevron-down" aria-hidden="true" title="Détails"></i>
+    <i *ngIf="isShowingDetails()" (click)="showDetails()" class="fa fa-chevron-up" aria-hidden="true" title="Masquer détails"></i>
+    <i (click)="placeUp()" class="fa fa-arrow-up" aria-hidden="true" title="Déplacer en haut"></i>
+    <i (click)="placeDown()" class="fa fa-arrow-down" aria-hidden="true" title="Déplacer en bas"></i>
+    <i (click)="delete()" class="fa fa-times supprItem" aria-hidden="true" title="Supprimer"></i>
+  </div>
+
+  <div class="detailsItem" *ngIf="isShowingDetails()">
+    <div class="description">
+      <div *ngIf="!isEditingDescription()" (dblclick)="editDescription(true)" class="is-small">Description : {{getDescription()}}</div>
+
+      <form *ngIf="isEditingDescription()" (submit)="setDescription(newDesc.value)">
+        <label>Description</label>
+        <textarea #newDesc value={{getDescription()}}></textarea>
+        <button type="submit">
+          <i class="fa fa-check-circle-o" aria-hidden="true"></i>
+        </button>
+      </form>
     </div>
 
-    <div class="detailsItem" *ngIf="isShowingDetails()">
-      <div class="description">
-        <div *ngIf="!isEditingDescription()" (dblclick)="editDescription(true)" class="is-small">Description : {{getDescription()}}</div>
+    <div class="date">
+      <div *ngIf="!isEditingDate()" (dblclick)="editDate(true)" class="is-small">Deadline : {{getTheDate()}}</div>
 
-        <form *ngIf="isEditingDescription()" (submit)="setDescription(newDesc.value)">
-          <label>Description</label>
-          <textarea #newDesc value={{getDescription()}}></textarea>
-          <button type="submit">
-            <i class="fa fa-check-circle-o" aria-hidden="true"></i>
-          </button>
-        </form>
-      </div>
-
-      <div class="date">
-        <div *ngIf="!isEditingDate()" (dblclick)="editDate(true)" class="is-small">Deadline : {{getTheDate()}}</div>
-
-        <form *ngIf="isEditingDate()" (submit)="setDate(newDate.value)">
-          <label>Deadline</label>
-          <input #newDate type="datetime-local" value={{getTheDateString()}}/>
-          <button type="submit">
-            <i class="fa fa-check-circle-o" aria-hidden="true"></i>
-          </button>
-        </form>
-      </div>
-
+      <form *ngIf="isEditingDate()" (submit)="setDate(newDate.value)">
+        <label>Deadline</label>
+        <input #newDate type="datetime-local" value={{getTheDateString()}}/>
+        <button type="submit">
+          <i class="fa fa-check-circle-o" aria-hidden="true"></i>
+        </button>
+      </form>
     </div>
+  </div>
 </section>
