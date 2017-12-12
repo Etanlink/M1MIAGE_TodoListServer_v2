@@ -13,10 +13,10 @@
           dupliquer la liste
           supprimer la liste
     -->
-    <i *ngIf="!isShowingDescription()" (click)="showDescription()" class="fa fa-angle-down" aria-hidden="true" title="Description"></i>
-    <i *ngIf="isShowingDescription()" (click)="showDescription()" class="fa fa-angle-up" aria-hidden="true" title="Masquer description"></i>
-    <i (click)="duplicateList()" class="fa fa-clone dupListe" aria-hidden="true" title="Dupliquer"></i>
-    <i (click)="delete()" class="fa fa-times supprListe" aria-hidden="true" title="Supprimer"></i>
+    <i *ngIf="!isShowingDescription()" (click)="showDescription()" class="fa fa-angle-down" aria-hidden="true" title="Description"></i><!--
+    --><i *ngIf="isShowingDescription()" (click)="showDescription()" class="fa fa-angle-up" aria-hidden="true" title="Masquer description"></i><!--
+    --><i (click)="duplicateList()" class="fa fa-clone dupListe" aria-hidden="true" title="Dupliquer"></i><!--
+    --><i (click)="delete()" class="fa fa-times supprListe" aria-hidden="true" title="Supprimer"></i>
   </div>
 
   <div class="descr" *ngIf="isShowingDescription()">
