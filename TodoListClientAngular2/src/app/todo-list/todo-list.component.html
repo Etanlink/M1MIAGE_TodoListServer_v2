@@ -13,8 +13,8 @@
           dupliquer la liste
           supprimer la liste
     -->
-    <i *ngIf="!isShowingDescription()" (click)="showDescription()" class="fa fa-angle-down" aria-hidden="true" title="Description"></i><!--
-    --><i *ngIf="isShowingDescription()" (click)="showDescription()" class="fa fa-angle-up" aria-hidden="true" title="Masquer description"></i><!--
+    <i *ngIf="!isShowingDescription()" (click)="showDescription()" class="fa fa-chevron-down" aria-hidden="true" title="Description"></i><!--
+    --><i *ngIf="isShowingDescription()" (click)="showDescription()" class="fa fa-chevron-up" aria-hidden="true" title="Masquer description"></i><!--
     --><i (click)="duplicateList()" class="fa fa-clone dupListe" aria-hidden="true" title="Dupliquer"></i><!--
     --><i (click)="placeUp()" class="fa fa-arrow-left" aria-hidden="true" title="PlaceLeft"></i><!--
     --><i (click)="placeDown()" class="fa fa-arrow-right" aria-hidden="true" title="PlaceRight"></i><!--

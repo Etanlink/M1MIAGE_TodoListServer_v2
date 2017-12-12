@@ -11,8 +11,8 @@
 
     <div class="icons">
       <!-- icone pour afficher les détails dans un item -->
-      <i *ngIf="!isShowingDetails()" (click)="showDetails()" class="fa fa-angle-down" aria-hidden="true" title="Détails"></i><!--
-    --><i *ngIf="isShowingDetails()" (click)="showDetails()" class="fa fa-angle-up" aria-hidden="true" title="Masquer détails"></i><!--
+      <i *ngIf="!isShowingDetails()" (click)="showDetails()" class="fa fa-chevron-down" aria-hidden="true" title="Détails"></i><!--
+    --><i *ngIf="isShowingDetails()" (click)="showDetails()" class="fa fa-chevron-up" aria-hidden="true" title="Masquer détails"></i><!--
     --><!-- icone pour supprimer un item --><!--
     --><i (click)="placeUp()" class="fa fa-arrow-up" aria-hidden="true" title="PlaceUP"></i><!--
     --><i (click)="placeDown()" class="fa fa-arrow-down" aria-hidden="true" title="PlaceDOWN"></i><!--
