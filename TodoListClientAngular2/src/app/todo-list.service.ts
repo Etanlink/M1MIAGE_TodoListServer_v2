@@ -160,6 +160,38 @@ export class TodoListService {
     } );
   }
 
+  PLACE_LIST_UP(listSrc : ListID, listDest : ItemID) : TodoListWithItems[]
+  {
+    let listes = this.ListUIs;
+    const interTab = listes.filter(list => list.id !== listSrc);
+    const indexDest = interTab.findIndex(list => list.id == listDest);
+    const firstPart = interTab.slice(0, indexDest);
+    const list = this.getList(listSrc);
+    firstPart.push(list);
+    const secondPart = interTab.slice(indexDest, listes.length);
+    listes = firstPart.concat(secondPart);
+    console.log(listes);
+    this.ListUIs = listes;
+    this.sendState();
+    return listes;
+  }
+
+  PLACE_LIST_DOWN( listSrc : ListID, listDest : ItemID): TodoListWithItems[]
+  {
+    let listes = this.ListUIs;
+    const interTab = listes.filter(list => list.id !== listSrc);
+    const indexDest = interTab.findIndex(list => list.id == listDest);
+    const firstPart = interTab.slice(0, indexDest+1);
+    const list = this.getList(listSrc);
+    firstPart.push(list);
+    const secondPart = interTab.slice(indexDest+1, listes.length);
+    listes = firstPart.concat(secondPart);
+    console.log(listes);
+    this.ListUIs = listes;
+    this.sendState();
+    return listes;
+  }
+
   /*****************************************************************************************************************************************
    * Operations on items *******************************************************************************************************************
    ****************************************************************************************************************************************/
@@ -195,6 +227,7 @@ export class TodoListService {
     firstPart.push(itemSource as ItemJSON);
     const secondPart = interTab.slice(indexDest, liste.items.length);
     liste.items = firstPart.concat(secondPart);
+    this.sendState();
   }
 
 
@@ -209,6 +242,7 @@ export class TodoListService {
     firstPart.push(itemSource as ItemJSON);
     const secondPart = interTab.slice(indexDest+1, liste.items.length);
     liste.items = firstPart.concat(secondPart);
+    this.sendState();
   }
 
 
